@@ -4,8 +4,9 @@ import {
     observable,
     makeObservable,
 } from 'mobx';
+import { NetworkRule } from '@adguard/tsurlfilter';
 
-import { RULE_OPTIONS, UrlFilterRule, FilterRule } from '../components/RequestWizard/constants';
+import { RULE_OPTIONS } from '../components/RequestWizard/constants';
 import {
     createDocumentLevelBlockRule,
     createExceptionCookieRule,
@@ -147,27 +148,29 @@ class WizardStore {
 
         let options = [];
 
+        const { OPTIONS } = NetworkRule;
+
         // add domain option
         if (urlDomain) {
-            options.push(`${UrlFilterRule.DOMAIN_OPTION}=${urlDomain}`);
+            options.push(`${OPTIONS.DOMAIN}=${urlDomain}`);
         }
         // add important option
         if (important) {
-            options.push(UrlFilterRule.IMPORTANT_OPTION);
+            options.push(OPTIONS.IMPORTANT);
         }
         // add match case option
         if (matchCase) {
-            options.push(UrlFilterRule.MATCH_CASE_OPTION);
+            options.push(OPTIONS.MATCH_CASE);
         }
         // add third party option
         if (thirdParty) {
-            options.push(UrlFilterRule.THIRD_PARTY_OPTION);
+            options.push(OPTIONS.THIRD_PARTY);
         }
         if (mandatoryOptions) {
             options = options.concat(mandatoryOptions);
         }
         if (options.length > 0) {
-            ruleText += UrlFilterRule.OPTIONS_DELIMITER + options.join(',');
+            ruleText += NetworkRule.OPTIONS_DELIMITER + options.join(',');
         }
 
         return ruleText;
@@ -206,19 +209,19 @@ class WizardStore {
         // Deal with csp rule
         const { requestRule } = selectedEvent;
         if (requestRule && requestRule.cspRule) {
-            mandatoryOptions = [UrlFilterRule.CSP_OPTION];
+            mandatoryOptions = [NetworkRule.OPTIONS.CSP];
         }
 
         if (requestRule && requestRule.cookieRule) {
-            mandatoryOptions = [UrlFilterRule.COOKIE_OPTION];
+            mandatoryOptions = [NetworkRule.OPTIONS.COOKIE];
         }
 
         if (selectedEvent.requestUrl === 'content-security-policy-check') {
-            mandatoryOptions = [UrlFilterRule.WEBRTC_OPTION, UrlFilterRule.WEBSOCKET_OPTION];
+            mandatoryOptions = [NetworkRule.OPTIONS.WEBRTC, NetworkRule.OPTIONS.WEBSOCKET];
         }
 
         if (selectedEvent.replaceRules) {
-            mandatoryOptions = [UrlFilterRule.REPLACE_OPTION];
+            mandatoryOptions = [NetworkRule.OPTIONS.REPLACE];
         }
 
         let ruleText;
@@ -269,7 +272,7 @@ class WizardStore {
             }
 
             if (selectedEvent.requestUrl === 'content-security-policy-check') {
-                patterns = [FilterRule.MASK_ALLOWLIST];
+                patterns = [NetworkRule.MASK_ALLOWLIST];
             }
 
             if (selectedEvent.element) {
