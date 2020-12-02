@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
+
+import { Options } from './components/Options';
 import { reactTranslator } from '../reactCommon/reactTranslator';
 
 export const optionsPage = {
@@ -8,7 +9,7 @@ export const optionsPage = {
         document.title = reactTranslator.translate('options_settings');
 
         ReactDOM.render(
-            <App />,
+            <Options />,
             document.getElementById('root'),
         );
     },
