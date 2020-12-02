@@ -49,7 +49,7 @@ const Options = observer(() => {
                     switch (type) {
                         case REQUEST_FILTER_UPDATED: {
                             await settingsStore.getUserRules();
-                            const { rulesCount } = message.data;
+                            const [{ rulesCount }] = message.data;
                             await settingsStore.updateRulesCount(rulesCount);
                             break;
                         }
