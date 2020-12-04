@@ -573,7 +573,6 @@ export const antiBannerService = (() => {
                 case listeners.REMOVE_RULE:
                 case listeners.UPDATE_FILTER_RULES:
                 case listeners.FILTER_ENABLE_DISABLE:
-                case listeners.UPDATE_USER_FILTER_RULES:
                     processFilterEvent(event, filter, rules);
                     break;
                 default: break;
