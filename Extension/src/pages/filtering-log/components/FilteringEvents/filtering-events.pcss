@@ -1,69 +1,75 @@
 .filtering-log {
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 100%;
+    max-width: 100%;
+    overflow: auto;
 
-    & tbody > tr {
-        &:hover {
-            cursor: pointer;
-            background: var(--trHover);
-        }
+    &__inner {
+        table-layout: fixed;
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 810px;
 
-        /* TODO combine options page variables with filtering log variables */
-        &.red {
-            background-color: rgba(194, 56, 20, 0.1);
-
+        & tbody > tr {
             &:hover {
-                background-color: rgba(194, 56, 20, 0.2);
+                cursor: pointer;
+                background: var(--trHover);
+            }
+
+            /* TODO combine options page variables with filtering log variables */
+            &.red {
+                background-color: rgba(194, 56, 20, 0.1);
+
+                &:hover {
+                    background-color: rgba(194, 56, 20, 0.2);
+                }
+            }
+
+            &.green {
+                background-color: rgba(103, 178, 121, 0.1);
+
+                &:hover {
+                    background-color: rgba(103, 178, 121, 0.2);
+                }
+            }
+
+            &.yellow {
+                /* TODO get color from Ali */
+                background-color: rgb(255, 252, 204);
+
+                &:hover {
+                    background-color: rgb(255, 254, 229);
+                }
             }
         }
 
-        &.green {
-            background-color: rgba(103, 178, 121, 0.1);
-
-            &:hover {
-                background-color: rgba(103, 178, 121, 0.2);
-            }
-        }
-
-        &.yellow {
-            /* TODO get color from Ali */
-            background-color: rgb(255, 252, 204);
-
-            &:hover {
-                background-color: rgb(255, 254, 229);
-            }
-        }
-    }
-
-    & th {
-        text-align: left;
-        padding: 7px 25px;
-        font-weight: normal;
-        font-size: 14px;
-        color: var(--darkText);
-        border-right: 1px solid var(--thColor);
-        border-bottom: 1px solid var(--thColor);
-        font-family: var(--font-roboto);
-
-        &:first-child {
-            width: 25%;
-        }
-    }
-
-    & td {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        padding: 8px 25px;
-        border-top: 1px solid var(--borderColor);
-        border-left: 1px solid var(--borderColor);
-        color: var(--textColor);
-        font-size: 12px;
-
-        &:first-child {
+        & th {
+            text-align: left;
+            padding: 7px 25px;
+            font-weight: normal;
+            font-size: 14px;
             color: var(--darkText);
-            border-left: none;
+            border-right: 1px solid var(--thColor);
+            border-bottom: 1px solid var(--thColor);
+            font-family: var(--font-roboto);
+
+            &:first-child {
+                width: 25%;
+            }
+        }
+
+        & td {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding: 8px 25px;
+            border-top: 1px solid var(--borderColor);
+            border-left: 1px solid var(--borderColor);
+            color: var(--textColor);
+            font-size: 12px;
+
+            &:first-child {
+                color: var(--darkText);
+                border-left: none;
+            }
         }
     }
 }
