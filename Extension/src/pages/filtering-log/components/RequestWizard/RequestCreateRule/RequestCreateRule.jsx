@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
+import classnames from 'classnames';
 
 import { rootStore } from '../../../stores/RootStore';
 import { RULE_OPTIONS } from '../constants';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
+import './request-create-rule.pcss';
+
+const getTitleI18nKey = classnames;
 
 const RequestCreateRule = observer(() => {
     const { wizardStore, logStore } = useContext(rootStore);
@@ -29,27 +33,30 @@ const RequestCreateRule = observer(() => {
     };
 
     const renderPatterns = (patterns) => {
-        const patternItems = patterns.map((pattern, idx) => {
-            return (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={`pattern${idx}`}>
-                    <input
-                        type="radio"
-                        id={pattern}
-                        name="rulePattern"
-                        value={pattern}
-                        checked={pattern === wizardStore.rulePattern}
-                        onChange={handlePatternChange(pattern)}
-                    />
-                    <label htmlFor={pattern}>{pattern}</label>
-                </li>
-            );
-        });
+        const patternItems = patterns.map((pattern, idx) => (
+            <label
+                /* eslint-disable-next-line react/no-array-index-key */
+                key={`pattern${idx}`}
+                className="radio-button-label"
+                htmlFor={pattern}
+            >
+                <input
+                    type="radio"
+                    id={pattern}
+                    name="rulePattern"
+                    value={pattern}
+                    checked={pattern === wizardStore.rulePattern}
+                    onChange={handlePatternChange(pattern)}
+                />
+                <label className="radio-button" />
+                {pattern}
+            </label>
+        ));
 
         return (
-            <ul>
+            <div className="patterns__content">
                 {patternItems}
-            </ul>
+            </div>
         );
     };
 
@@ -67,25 +74,25 @@ const RequestCreateRule = observer(() => {
             }
 
             return (
-                <li key={id}>
+                <label className="checkbox-label" key={id}>
                     <input
                         type="checkbox"
-                        id={id}
                         name={id}
                         value={id}
                         onChange={handleOptionsChange(id)}
                         checked={wizardStore.ruleOptions[id].checked}
                     />
-                    <label htmlFor={id}>{label}</label>
-                </li>
+                    <div className="custom-checkbox" />
+                    {label}
+                </label>
             );
         });
 
         return (
             <form>
-                <ul>
+                <div className="options__content">
                     {renderedOptions}
-                </ul>
+                </div>
             </form>
         );
     };
@@ -119,41 +126,61 @@ const RequestCreateRule = observer(() => {
     const showPatterns = !isElementOrScript && !cookieName;
     const showOptions = !isElementOrScript && !requestRule?.documentLevelRule;
 
+    const titleI18nKey = getTitleI18nKey({
+        filtering_modal_block: wizardStore.requestModalStateEnum.isBlock,
+        filtering_modal_unblock: wizardStore.requestModalStateEnum.isUnblock,
+    });
+
     return (
         <>
             {/* TODO style button and remove text */}
-            <button
-                type="button"
-                onClick={handleBackClick}
-            >
-                back
-            </button>
-            <div className="rule-text">
-                <div>{reactTranslator.translate('filtering_modal_rule_text')}</div>
-                <input
-                    type="text"
-                    name="rule-text"
-                    value={wizardStore.rule}
-                    onChange={handleRuleChange}
-                />
+            <div className="request-modal__title">
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                <button
+                    type="button"
+                    onClick={handleBackClick}
+                    className="request-modal__navigation request-modal__navigation--back"
+                >
+                    <svg className="icon">
+                        <use xlinkHref="#arrow-left" />
+                    </svg>
+                </button>
+                <span className="request-modal__header">{reactTranslator.translate(titleI18nKey)}</span>
             </div>
-            {showPatterns && (
-                <div className="patterns">
-                    <div>{reactTranslator.translate('filtering_modal_patterns')}</div>
-                    {rulePatterns}
+            <div className="request-modal__content">
+                <div className="request-info request-modal__rule-text">
+                    <div className="request-info__key">{reactTranslator.translate('filtering_modal_rule_text')}</div>
+                    <div
+                        /* eslint-disable-next-line jsx-a11y/aria-role */
+                        role="textarea"
+                        className="request-info__value request-modal__rule-text"
+                        contentEditable
+                        suppressContentEditableWarning
+                        onChange={handleRuleChange}
+                    >
+                        {wizardStore.rule}
+                    </div>
                 </div>
-            )}
-            {showOptions && (
-                <div className="options">
-                    <div>{reactTranslator.translate('filtering_modal_options')}</div>
-                    {options}
-                </div>
-            )}
+                {showPatterns && (
+                    <div className="request-info patterns">
+                        <div className="request-info__key">{reactTranslator.translate('filtering_modal_patterns')}</div>
+                        {rulePatterns}
+                    </div>
+                )}
+                {showOptions && (
+                    <div className="request-info options">
+                        <div className="request-info__key">{reactTranslator.translate('filtering_modal_options')}</div>
+                        {options}
+                    </div>
+                )}
+            </div>
             <button
                 type="button"
+                className="request-modal__button request-modal__button--red"
                 onClick={handleAddRuleClick}
+                title={reactTranslator.translate(titleI18nKey)}
             >
-                {reactTranslator.translate('filtering_modal_add_rule')}
+                {reactTranslator.translate(titleI18nKey)}
             </button>
         </>
     );

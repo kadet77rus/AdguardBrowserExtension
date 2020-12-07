@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
 import { identity } from 'lodash';
+import classnames from 'classnames';
 
 import { getFilterName, getRequestType } from '../utils';
 import { RequestImage } from './RequestImage';
@@ -43,6 +44,8 @@ const getStealthActionsNames = (actions) => {
 
 const RequestInfo = observer(() => {
     const { logStore, wizardStore } = useContext(rootStore);
+
+    const { closeModal } = wizardStore;
 
     const { selectedEvent, filtersMetadata } = logStore;
 
@@ -95,8 +98,8 @@ const RequestInfo = observer(() => {
         }
         return (
             <div key={title} className="request-info">
-                <div>{title}</div>
-                <div>{data}</div>
+                <div className="request-info__key">{title}</div>
+                <div className="request-info__value">{data}</div>
             </div>
         );
     });
@@ -125,9 +128,10 @@ const RequestInfo = observer(() => {
 
         return (
             <button
-                className="control"
+                className="request-modal__button request-modal__button--white"
                 type="button"
                 onClick={openInNewTabHandler}
+                title={reactTranslator.translate('filtering_modal_open_in_new_tab')}
             >
                 {reactTranslator.translate('filtering_modal_open_in_new_tab')}
             </button>
@@ -191,11 +195,16 @@ const RequestInfo = observer(() => {
 
         const { buttonTitleKey, onClick } = props;
 
+        const buttonClass = classnames('request-modal__button', {
+            'request-modal__button--red': buttonTitleKey === BUTTON_MAP.BLOCK.buttonTitleKey,
+        });
+
         return (
             <button
-                className="control"
+                className={buttonClass}
                 type="button"
                 onClick={onClick}
+                title={reactTranslator.translate(buttonTitleKey)}
             >
                 {reactTranslator.translate(buttonTitleKey)}
             </button>
@@ -204,12 +213,25 @@ const RequestInfo = observer(() => {
 
     return (
         <>
-            <div>Request details</div>
-            {renderedInfo}
-            {renderImageIfNecessary(selectedEvent)}
-            <div className="controls">
-                {renderOpenInNewTab(selectedEvent)}
-                {renderBlockRequest(selectedEvent)}
+            <div className="request-modal__title">
+                <button
+                    type="button"
+                    onClick={closeModal}
+                    className="request-modal__navigation request-modal__navigation--close"
+                >
+                    <svg className="icon">
+                        <use xlinkHref="#cross" />
+                    </svg>
+                </button>
+                <span className="request-modal__header">{reactTranslator.translate('filtering_modal_info_title')}</span>
+            </div>
+            <div className="request-modal__content">
+                {renderedInfo}
+                {renderImageIfNecessary(selectedEvent)}
+                <div className="request-modal__controls">
+                    {renderOpenInNewTab(selectedEvent)}
+                    {renderBlockRequest(selectedEvent)}
+                </div>
             </div>
         </>
     );

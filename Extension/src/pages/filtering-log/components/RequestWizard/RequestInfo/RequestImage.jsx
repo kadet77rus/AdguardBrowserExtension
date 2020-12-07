@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import './request-image.pcss';
+
 const RequestImage = (props) => {
     const { url } = props;
     const [shouldRenderImage, setShouldRenderImage] = useState(false);
@@ -22,7 +24,11 @@ const RequestImage = (props) => {
         };
     }, []);
 
-    return (shouldRenderImage && <img src={url} alt="request" />);
+    if (!shouldRenderImage) {
+        return null;
+    }
+
+    return <img src={url} className="request-image" alt="request" />;
 };
 
 export { RequestImage };

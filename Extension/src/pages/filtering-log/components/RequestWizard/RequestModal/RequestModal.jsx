@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
 import Modal from 'react-modal';
 import { observer } from 'mobx-react';
+import classnames from 'classnames';
+
 import { rootStore } from '../../../stores/RootStore';
 import { RequestInfo } from '../RequestInfo';
 import { WIZARD_STATES } from '../../../stores/WizardStore';
 import { RequestCreateRule } from '../RequestCreateRule';
+import './RequestModal.pcss';
 
 Modal.setAppElement('#root');
 
 const RequestModal = observer(() => {
     const { wizardStore } = useContext(rootStore);
 
-    const { isModalOpen, closeModal, requestModalState } = wizardStore;
+    const {
+        isModalOpen, closeModal, requestModalState, requestModalStateEnum,
+    } = wizardStore;
 
     let modalContent;
 
@@ -31,30 +36,19 @@ const RequestModal = observer(() => {
             modalContent = <RequestInfo />;
     }
 
+    const className = classnames('ReactModal__Content request-modal', {
+        'request-modal__view': requestModalStateEnum.isView,
+        'request-modal__block': requestModalStateEnum.isBlock,
+        'request-modal__unblock': requestModalStateEnum.isUnblock,
+    });
+
     return (
         <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}
-            style={{
-                overlay: {
-                    position: 'static',
-                },
-                content: {
-                    position: 'fixed',
-                    width: '500px', // TODO make responsive
-                    right: '0px',
-                    top: '0px',
-                    bottom: '0px',
-                    left: 'auto',
-                },
-            }}
+            className={className}
+            overlayClassName="ReactModal__Overlay request-modal__overlay"
         >
-            <button
-                type="button"
-                onClick={closeModal}
-            >
-                close
-            </button>
             {modalContent}
         </Modal>
     );
