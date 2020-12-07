@@ -94,7 +94,7 @@ export const splitToPatterns = (requestUrl, domain, whitelist) => {
     }
 
     if (whitelist) {
-        prefix = NetworkRule.OPTIONS.MASK_ALLOWLIST + prefix;
+        prefix = NetworkRule.MASK_ALLOWLIST + prefix;
     }
 
     const patterns = [];

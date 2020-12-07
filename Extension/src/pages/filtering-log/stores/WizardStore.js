@@ -196,6 +196,7 @@ class WizardStore {
     };
 
     getRuleText(selectedEvent, rulePattern, ruleOptions) {
+        // if rule was edited by user return it as is
         if (this.ruleText !== null) {
             return this.ruleText;
         }
