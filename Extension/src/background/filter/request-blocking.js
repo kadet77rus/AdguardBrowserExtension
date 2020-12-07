@@ -532,6 +532,8 @@ export const webRequestService = (function () {
             return false;
         }
 
+        // TODO fix in tsurlfilter
+        return false;
         return canCollectHitStatsForTab(tab) || filteringLog.isOpen();
     };
 
