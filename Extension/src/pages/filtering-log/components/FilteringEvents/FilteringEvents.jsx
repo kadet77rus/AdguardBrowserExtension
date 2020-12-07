@@ -55,11 +55,13 @@ const FilteringEvents = observer(() => {
                 const formattedRequestType = getRequestType(requestType);
 
                 if (requestThirdParty) {
-                    // TODO waits for design
                     return (
                         <>
                             {formattedRequestType}
-                            <small>Third party</small>
+                            <svg className="icon--24 third-party__icon icon--green">
+                                <use xlinkHref="#chain" />
+                            </svg>
+                            <span className="third-party__label">Third party</span>
                         </>
                     );
                 }
@@ -138,50 +140,52 @@ const FilteringEvents = observer(() => {
     };
 
     return (
-        <table {...getTableProps()} className="filtering-log">
-            <thead>
-                {
-                    headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {
-                                headerGroup.headers.map((column) => (
-                                    <th {...column.getHeaderProps()}>
-                                        {
-                                            column.render('Header')
-                                        }
-                                    </th>
-                                ))
-                            }
-                        </tr>
-                    ))
-                }
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {
-                    rows.map((row) => {
-                        prepareRow(row);
-                        return (
-                            <tr
-                                {...row.getRowProps(getRowProps(row))}
-                                onClick={handleEventClick(row.original)}
-                            >
+        <div className="filtering-log">
+            <table {...getTableProps()} className="filtering-log__inner">
+                <thead>
+                    {
+                        headerGroups.map((headerGroup) => (
+                            <tr {...headerGroup.getHeaderGroupProps()}>
                                 {
-                                    row.cells.map((cell) => {
-                                        return (
-                                            <td {...cell.getCellProps()}>
-                                                {
-                                                    cell.render('Cell')
-                                                }
-                                            </td>
-                                        );
-                                    })
+                                    headerGroup.headers.map((column) => (
+                                        <th {...column.getHeaderProps()}>
+                                            {
+                                                column.render('Header')
+                                            }
+                                        </th>
+                                    ))
                                 }
                             </tr>
-                        );
-                    })
-                }
-            </tbody>
-        </table>
+                        ))
+                    }
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {
+                        rows.map((row) => {
+                            prepareRow(row);
+                            return (
+                                <tr
+                                    {...row.getRowProps(getRowProps(row))}
+                                    onClick={handleEventClick(row.original)}
+                                >
+                                    {
+                                        row.cells.map((cell) => {
+                                            return (
+                                                <td {...cell.getCellProps()}>
+                                                    {
+                                                        cell.render('Cell')
+                                                    }
+                                                </td>
+                                            );
+                                        })
+                                    }
+                                </tr>
+                            );
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
     );
 });
 
