@@ -1,8 +1,9 @@
 import React, { useContext, useState, useRef } from 'react';
 import { observer } from 'mobx-react';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import { rootStore } from '../../../stores/RootStore';
+import { reactTranslator } from '../../../../reactCommon/reactTranslator';
 
 import './miscellaneous-filters.pcss';
 
@@ -49,12 +50,11 @@ const MiscellaneousFilters = observer(() => {
         }
     };
 
-    const filtersClassNames = (name, value) => classNames(
+    const filtersClassNames = (name, value) => cn(
         name,
         { active: value },
     );
 
-    // FIXME add new messages to translations
     return (
         <div className="miscellaneous-filters">
             <button
@@ -62,7 +62,7 @@ const MiscellaneousFilters = observer(() => {
                 type="button"
                 onClick={miscellaneousFiltersButtonHandler}
             >
-                Filters
+                {reactTranslator.translate('filtering_log_filter_title')}
             </button>
             <div className={filtersClassNames('miscellaneous-filters__filters', showPopup)} ref={ref}>
                 <div className="miscellaneous-filters__section">
@@ -75,7 +75,7 @@ const MiscellaneousFilters = observer(() => {
                             value={searchRegular}
                         />
                         <div className={filtersClassNames('custom-checkbox', searchRegular)} />
-                        Regular
+                        {reactTranslator.translate('filtering_log_filter_regular')}
                     </label>
 
                     <label className="checkbox-label" htmlFor="whitelisted">
@@ -87,7 +87,7 @@ const MiscellaneousFilters = observer(() => {
                             value={searchWhitelisted}
                         />
                         <div className={filtersClassNames('custom-checkbox', searchWhitelisted)} />
-                        Whitelisted
+                        {reactTranslator.translate('filtering_log_filter_whitelisted')}
                     </label>
 
                     <label className="checkbox-label" htmlFor="blocked">
@@ -98,8 +98,9 @@ const MiscellaneousFilters = observer(() => {
                             onClick={filtersCheckboxHandler('searchBlocked')}
                             value={searchBlocked}
                         />
+                        {/* FIXME refactor css active class to depend on input value instead of javascript */}
                         <div className={filtersClassNames('custom-checkbox', searchBlocked)} />
-                        Blocked
+                        {reactTranslator.translate('filtering_log_filter_blocked')}
                     </label>
 
                     <label className="checkbox-label" htmlFor="modified">
@@ -111,7 +112,7 @@ const MiscellaneousFilters = observer(() => {
                             value={searchModified}
                         />
                         <div className={filtersClassNames('custom-checkbox', searchModified)} />
-                        Modified
+                        {reactTranslator.translate('filtering_log_filter_modified')}
                     </label>
 
                     <label className="checkbox-label" htmlFor="user-filter">
@@ -123,7 +124,7 @@ const MiscellaneousFilters = observer(() => {
                             value={searchUserFilter}
                         />
                         <div className={filtersClassNames('custom-checkbox', searchUserFilter)} />
-                        User filter
+                        {reactTranslator.translate('filtering_log_filter_user_rule')}
                     </label>
                 </div>
 
@@ -139,7 +140,7 @@ const MiscellaneousFilters = observer(() => {
                             value={SEARCH_ALL}
                         />
                         <div className={filtersClassNames('radio-button', searchParty === SEARCH_ALL)} />
-                        All
+                        {reactTranslator.translate('filtering_log_filter_all')}
                     </label>
 
                     <label className="radio-button-label" htmlFor="first-party">
@@ -151,7 +152,7 @@ const MiscellaneousFilters = observer(() => {
                             value={SEARCH_FIRST_PARTY}
                         />
                         <div className={filtersClassNames('radio-button', searchParty === SEARCH_FIRST_PARTY)} />
-                        First party
+                        {reactTranslator.translate('filtering_log_filter_first_party')}
                     </label>
 
                     <label className="radio-button-label" htmlFor="third-party">
@@ -163,7 +164,7 @@ const MiscellaneousFilters = observer(() => {
                             value={SEARCH_THIRD_PARTY}
                         />
                         <div className={filtersClassNames('radio-button', searchParty === SEARCH_THIRD_PARTY)} />
-                        Third party
+                        {reactTranslator.translate('filtering_log_filter_third_party')}
                     </label>
                 </div>
             </div>

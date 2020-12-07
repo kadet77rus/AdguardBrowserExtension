@@ -247,13 +247,8 @@ const init = () => {
                 });
             }
             case 'addUserRule': {
-                if (data) {
-                    const { rule } = data;
-                    userrules.addRules([rule]);
-                } else {
-                    // TODO adjust message types for all callers
-                    userrules.addRules([message.ruleText]);
-                }
+                const { ruleText } = data;
+                userrules.addRules([ruleText]);
                 break;
             }
             case 'removeUserRule': {
@@ -268,8 +263,7 @@ const init = () => {
             case 'loadCustomFilterInfo':
                 try {
                     const { url, title } = data;
-                    const res = await application.loadCustomFilterInfo(url, { title });
-                    return res;
+                    return application.loadCustomFilterInfo(url, { title });
                 } catch (e) {
                     return {};
                 }
@@ -310,14 +304,8 @@ const init = () => {
                 break;
             }
             case 'openTab': {
-                if (data) {
-                    const { url, options } = data;
-                    await uiService.openTab(url, options);
-                } else {
-                    // TODO remove when popup page will be refactored
-                    await uiService.openTab(message.url, message.options);
-                }
-                break;
+                const { url, options } = data;
+                return uiService.openTab(url, options);
             }
             case 'resetBlockedAdsCount':
                 frames.resetBlockedAdsCount();

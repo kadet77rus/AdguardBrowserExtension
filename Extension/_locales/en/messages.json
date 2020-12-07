@@ -620,6 +620,33 @@
     "filtering_modal_open_in_new_tab": {
         "message": "Open in a new tab"
     },
+    "filtering_log_filter_title": {
+        "message": "Filter"
+    },
+    "filtering_log_filter_regular": {
+        "message": "Regular"
+    },
+    "filtering_log_filter_whitelisted": {
+        "message": "Whitelisted"
+    },
+    "filtering_log_filter_blocked": {
+        "message": "Blocked"
+    },
+    "filtering_log_filter_modified": {
+        "message": "Modified"
+    },
+    "filtering_log_filter_user_rule": {
+        "message": "User filter"
+    },
+    "filtering_log_filter_all": {
+        "message": "All"
+    },
+    "filtering_log_filter_first_party": {
+        "message": "First party"
+    },
+    "filtering_log_filter_third_party": {
+        "message": "Third party"
+    },
     "options_settings": {
         "message": "AdGuard Settings"
     },

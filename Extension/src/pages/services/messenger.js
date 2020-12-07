@@ -252,9 +252,9 @@ class Messenger {
         await this.sendMessage(type, { url, options });
     }
 
-    async addUserRule(rule) {
+    async addUserRule(ruleText) {
         const type = 'addUserRule';
-        await this.sendMessage(type, { rule });
+        await this.sendMessage(type, { ruleText });
     }
 
     async unAllowlistFrame(frameInfo) {

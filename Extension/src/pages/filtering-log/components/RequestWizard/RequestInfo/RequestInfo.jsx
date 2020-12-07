@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
 import { identity } from 'lodash';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { getFilterName, getRequestType } from '../utils';
 import { RequestImage } from './RequestImage';
@@ -10,6 +10,7 @@ import { rootStore } from '../../../stores/RootStore';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
 import { ANTIBANNER_FILTERS_ID, STEALTH_ACTIONS } from '../../../../../common/constants';
+import { Icon } from '../../../../../common/components/ui/Icon';
 
 import './request-info.pcss';
 
@@ -195,7 +196,7 @@ const RequestInfo = observer(() => {
 
         const { buttonTitleKey, onClick } = props;
 
-        const buttonClass = classnames('request-modal__button', {
+        const buttonClass = cn('request-modal__button', {
             'request-modal__button--red': buttonTitleKey === BUTTON_MAP.BLOCK.buttonTitleKey,
         });
 
@@ -219,9 +220,7 @@ const RequestInfo = observer(() => {
                     onClick={closeModal}
                     className="request-modal__navigation request-modal__navigation--close"
                 >
-                    <svg className="icon">
-                        <use xlinkHref="#cross" />
-                    </svg>
+                    <Icon id="#cross" />
                 </button>
                 <span className="request-modal__header">{reactTranslator.translate('filtering_modal_info_title')}</span>
             </div>

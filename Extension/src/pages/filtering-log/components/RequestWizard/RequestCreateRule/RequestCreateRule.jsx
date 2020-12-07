@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { rootStore } from '../../../stores/RootStore';
 import { RULE_OPTIONS } from '../constants';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
-import './request-create-rule.pcss';
 
-const getTitleI18nKey = classnames;
+import './request-create-rule.pcss';
+import { Icon } from '../../../../../common/components/ui/Icon';
+
+const getTitleI18nKey = cn;
 
 const RequestCreateRule = observer(() => {
     const { wizardStore, logStore } = useContext(rootStore);
@@ -48,6 +50,7 @@ const RequestCreateRule = observer(() => {
                     checked={pattern === wizardStore.rulePattern}
                     onChange={handlePatternChange(pattern)}
                 />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label className="radio-button" />
                 {pattern}
             </label>
@@ -61,8 +64,7 @@ const RequestCreateRule = observer(() => {
     };
 
     const handleOptionsChange = (id) => (e) => {
-        const checkbox = e.target;
-        const { checked } = checkbox;
+        const { checked } = e.target;
         wizardStore.setRuleOptionState(id, checked);
     };
 
@@ -74,6 +76,7 @@ const RequestCreateRule = observer(() => {
             }
 
             return (
+                // eslint-disable-next-line jsx-a11y/label-has-associated-control
                 <label className="checkbox-label" key={id}>
                     <input
                         type="checkbox"
@@ -133,17 +136,13 @@ const RequestCreateRule = observer(() => {
 
     return (
         <>
-            {/* TODO style button and remove text */}
             <div className="request-modal__title">
-                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <button
                     type="button"
                     onClick={handleBackClick}
                     className="request-modal__navigation request-modal__navigation--back"
                 >
-                    <svg className="icon">
-                        <use xlinkHref="#arrow-left" />
-                    </svg>
+                    <Icon id="#arrow-left" />
                 </button>
                 <span className="request-modal__header">{reactTranslator.translate(titleI18nKey)}</span>
             </div>

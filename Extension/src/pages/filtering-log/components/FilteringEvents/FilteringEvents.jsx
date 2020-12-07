@@ -2,13 +2,14 @@
 import React, { useContext, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { useTable } from 'react-table';
-import { rootStore } from '../../stores/RootStore';
 
+import { rootStore } from '../../stores/RootStore';
 import { getRequestType } from '../RequestWizard/utils';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
 
 import './filtering-events.pcss';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 const Messages = {
     OPTIONS_USERFILTER: reactTranslator.translate('options_userfilter'),
@@ -24,7 +25,7 @@ const FilteringEvents = observer(() => {
         logStore.setSelectedEventById(row.eventId);
     };
 
-    // FIXME display element escaped, waits when css hits counter would be fixed
+    // TODO display element escaped, waits when css hits counter would be fixed
     const columns = useMemo(() => [
         {
             Header: 'URL',
@@ -58,9 +59,7 @@ const FilteringEvents = observer(() => {
                     return (
                         <>
                             {formattedRequestType}
-                            <svg className="icon--24 third-party__icon icon--green">
-                                <use xlinkHref="#chain" />
-                            </svg>
+                            <Icon id="#chain" classname="icon--24 third-party__icon icon--green" />
                             <span className="third-party__label">Third party</span>
                         </>
                     );

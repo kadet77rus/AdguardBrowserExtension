@@ -32,7 +32,7 @@ export const DevToolsHelper = (function () {
      * @param options Object {ruleText: 'ruleText'}
      */
     const addRule = function (options) {
-        runtimeImpl.sendMessage({ type: 'addUserRule', ruleText: options.ruleText });
+        runtimeImpl.sendMessage({ type: 'addUserRule', data: { ruleText: options.ruleText } });
     };
 
     /**

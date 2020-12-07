@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import Modal from 'react-modal';
 import { observer } from 'mobx-react';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { rootStore } from '../../../stores/RootStore';
 import { RequestInfo } from '../RequestInfo';
 import { WIZARD_STATES } from '../../../stores/WizardStore';
 import { RequestCreateRule } from '../RequestCreateRule';
+
 import './RequestModal.pcss';
 
 Modal.setAppElement('#root');
@@ -36,7 +37,7 @@ const RequestModal = observer(() => {
             modalContent = <RequestInfo />;
     }
 
-    const className = classnames('ReactModal__Content request-modal', {
+    const className = cn('ReactModal__Content request-modal', {
         'request-modal__view': requestModalStateEnum.isView,
         'request-modal__block': requestModalStateEnum.isBlock,
         'request-modal__unblock': requestModalStateEnum.isUnblock,

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import { rootStore } from '../../stores/RootStore';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
@@ -26,12 +26,11 @@ const Actions = observer(() => {
         logStore.setPreserveLog(e.target.checked);
     };
 
-    const preserveLogClassName = classNames(
+    const preserveLogClassName = cn(
         'custom-checkbox',
         { active: preserveLogEnabled },
     );
 
-    // TODO check accessibility
     return (
         <div className="actions">
             <div className="actions__action">
