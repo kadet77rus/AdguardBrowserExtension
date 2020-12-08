@@ -554,8 +554,8 @@
     "filtering_table_filter": {
         "message": "Filter"
     },
-    "filtering_table_empty_reload_page": {
-        "message": "<a href='#' class='reloadTab'>Reload page<\/a> to see the log."
+    "filtering_table_empty_reload_page_desc": {
+        "message": "<a>Reload page</a> to see the log."
     },
     "filtering_modal_info_title": {
         "message": "Request details"

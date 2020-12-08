@@ -73,8 +73,9 @@ const MiscellaneousFilters = observer(() => {
                             name="regular"
                             onClick={filtersCheckboxHandler('searchRegular')}
                             value={searchRegular}
+                            checked={searchRegular}
                         />
-                        <div className={filtersClassNames('custom-checkbox', searchRegular)} />
+                        <div className="custom-checkbox" />
                         {reactTranslator.translate('filtering_log_filter_regular')}
                     </label>
 
@@ -85,8 +86,9 @@ const MiscellaneousFilters = observer(() => {
                             name="whitelisted"
                             onClick={filtersCheckboxHandler('searchWhitelisted')}
                             value={searchWhitelisted}
+                            checked={searchWhitelisted}
                         />
-                        <div className={filtersClassNames('custom-checkbox', searchWhitelisted)} />
+                        <div className="custom-checkbox" />
                         {reactTranslator.translate('filtering_log_filter_whitelisted')}
                     </label>
 
@@ -97,9 +99,9 @@ const MiscellaneousFilters = observer(() => {
                             name="blocked"
                             onClick={filtersCheckboxHandler('searchBlocked')}
                             value={searchBlocked}
+                            checked={searchBlocked}
                         />
-                        {/* FIXME refactor css active class to depend on input value instead of javascript */}
-                        <div className={filtersClassNames('custom-checkbox', searchBlocked)} />
+                        <div className="custom-checkbox" />
                         {reactTranslator.translate('filtering_log_filter_blocked')}
                     </label>
 
@@ -110,8 +112,9 @@ const MiscellaneousFilters = observer(() => {
                             name="modified"
                             onClick={filtersCheckboxHandler('searchModified')}
                             value={searchModified}
+                            checked={searchModified}
                         />
-                        <div className={filtersClassNames('custom-checkbox', searchModified)} />
+                        <div className="custom-checkbox" />
                         {reactTranslator.translate('filtering_log_filter_modified')}
                     </label>
 
@@ -122,8 +125,9 @@ const MiscellaneousFilters = observer(() => {
                             name="user-filter"
                             onClick={filtersCheckboxHandler('searchUserFilter')}
                             value={searchUserFilter}
+                            checked={searchUserFilter}
                         />
-                        <div className={filtersClassNames('custom-checkbox', searchUserFilter)} />
+                        <div className="custom-checkbox" />
                         {reactTranslator.translate('filtering_log_filter_user_rule')}
                     </label>
                 </div>
@@ -138,8 +142,9 @@ const MiscellaneousFilters = observer(() => {
                             name="party-filter"
                             onClick={radioHandler}
                             value={SEARCH_ALL}
+                            checked={searchParty === SEARCH_ALL}
                         />
-                        <div className={filtersClassNames('radio-button', searchParty === SEARCH_ALL)} />
+                        <div className="radio-button" />
                         {reactTranslator.translate('filtering_log_filter_all')}
                     </label>
 
@@ -150,8 +155,9 @@ const MiscellaneousFilters = observer(() => {
                             name="party-filter"
                             onClick={radioHandler}
                             value={SEARCH_FIRST_PARTY}
+                            checked={searchParty === SEARCH_FIRST_PARTY}
                         />
-                        <div className={filtersClassNames('radio-button', searchParty === SEARCH_FIRST_PARTY)} />
+                        <div className="radio-button" />
                         {reactTranslator.translate('filtering_log_filter_first_party')}
                     </label>
 
@@ -162,8 +168,9 @@ const MiscellaneousFilters = observer(() => {
                             name="party-filter"
                             onClick={radioHandler}
                             value={SEARCH_THIRD_PARTY}
+                            checked={searchParty === SEARCH_THIRD_PARTY}
                         />
-                        <div className={filtersClassNames('radio-button', searchParty === SEARCH_THIRD_PARTY)} />
+                        <div className="radio-button" />
                         {reactTranslator.translate('filtering_log_filter_third_party')}
                     </label>
                 </div>

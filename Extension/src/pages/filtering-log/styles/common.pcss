@@ -1,3 +1,9 @@
+html,
+body,
+#root {
+    height: 100%;
+}
+
 body {
     margin: 0;
     background-color: var(--bgColor);
@@ -13,9 +19,9 @@ label.checkbox-label {
     & input[type="checkbox"] {
         display: none;
 
-        &:checked ~ .custom-checkbox {
+        &:checked + .custom-checkbox {
             background-color: var(--mainGreen);
-            background-image: url(../../assets/icons/checked.svg);
+            background-image: svg-load("checked.svg");
             border-color: var(--mainGreen);
         }
     }
@@ -30,13 +36,6 @@ label.checkbox-label {
         border: 2px solid var(--inputsBorder);
         border-radius: 2px;
         margin-right: 10px;
-
-        /* FIXME: refactor to use input:checked instead */
-        &.active {
-            background-color: var(--mainGreen);
-            background-image: url(../../assets/icons/checked.svg);
-            border-color: var(--mainGreen);
-        }
     }
 }
 
@@ -50,8 +49,8 @@ label.radio-button-label {
     & input[type="radio"] {
         display: none;
 
-        &:checked ~ .radio-button {
-            background-image: url(../../assets/icons/circle.svg);
+        &:checked + .radio-button {
+            background-image: svg-load("circle.svg");
             background-position: center;
             background-size: 12px 12px;
             background-repeat: no-repeat;
@@ -66,15 +65,6 @@ label.radio-button-label {
         border: 2px solid var(--inputsBorder);
         border-radius: 17px;
         margin-right: 10px;
-
-        /* FIXME: refactor to use input:checked instead */
-        &.active {
-            background-image: url(../../assets/icons/circle.svg);
-            background-position: center;
-            background-size: 12px 12px;
-            background-repeat: no-repeat;
-            border: 2px solid var(--mainGreen);
-        }
     }
 }
 
