@@ -25,6 +25,11 @@ const FilteringEvents = observer(() => {
         logStore.setSelectedEventById(row.eventId);
     };
 
+    const refreshPage = async (e) => {
+        e.preventDefault();
+        await logStore.refreshPage();
+    };
+
     // TODO display element escaped, waits when css hits counter would be fixed
     const columns = useMemo(() => [
         {
@@ -184,6 +189,26 @@ const FilteringEvents = observer(() => {
                     }
                 </tbody>
             </table>
+            {rows.length <= 0 && (
+                <div className="filtering-log__empty">
+                    <div className="filtering-log__empty-in">
+                        <div className="filtering-log__empty-img" />
+                        <div className="filtering-log__desc">
+                            {reactTranslator.translate('filtering_table_empty_reload_page', {
+                                a: (chunks) => (
+                                    <button
+                                        className="filtering-log__refresh"
+                                        type="button"
+                                        onClick={refreshPage}
+                                    >
+                                        {chunks}
+                                    </button>
+                                ),
+                            })}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 });

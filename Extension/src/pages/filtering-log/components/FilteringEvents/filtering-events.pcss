@@ -1,6 +1,11 @@
 .filtering-log {
     max-width: 100%;
+    height: calc(100% - 218px);
     overflow: auto;
+
+    @media (max-width: 640px) {
+        height: calc(100% - 275px);
+    }
 
     &__inner {
         table-layout: fixed;
@@ -14,29 +19,27 @@
                 background: var(--trHover);
             }
 
-            /* TODO combine options page variables with filtering log variables */
             &.red {
-                background-color: rgba(194, 56, 20, 0.1);
+                background-color: var(--red-row);
 
                 &:hover {
-                    background-color: rgba(194, 56, 20, 0.2);
+                    background-color: var(--red-row-active);
                 }
             }
 
             &.green {
-                background-color: rgba(103, 178, 121, 0.1);
+                background-color: var(--green-row);
 
                 &:hover {
-                    background-color: rgba(103, 178, 121, 0.2);
+                    background-color: var(--green-row-active);
                 }
             }
 
             &.yellow {
-                /* TODO get color from Ali */
-                background-color: rgb(255, 252, 204);
+                background-color: var(--orange-row);
 
                 &:hover {
-                    background-color: rgb(255, 254, 229);
+                    background-color: var(--orange-row-active);
                 }
             }
         }
@@ -71,6 +74,38 @@
                 border-left: none;
             }
         }
+    }
+
+    &__empty {
+        height: calc(100% - 53px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__empty-in {
+        width: 182px;
+    }
+
+    &__empty-img {
+        width: 115px;
+        height: 94px;
+        margin: 0 auto 67px;
+        background-color: var(--green-row);
+    }
+
+    &__desc {
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    &__refresh {
+        display: inline;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        color: var(--green400);
     }
 }
 
