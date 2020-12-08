@@ -7,9 +7,9 @@ import { rootStore } from '../../stores/RootStore';
 import { getRequestType } from '../RequestWizard/utils';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 import './filtering-events.pcss';
-import { Icon } from '../../../../common/components/ui/Icon';
 
 const Messages = {
     OPTIONS_USERFILTER: reactTranslator.translate('options_userfilter'),

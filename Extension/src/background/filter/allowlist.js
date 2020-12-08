@@ -226,7 +226,7 @@ export const allowlist = (() => {
      * Start (or stop in case of inverted mode) filtration for url
      * @param url
      */
-    const unWhitelistUrl = function (url) {
+    const unAllowlistUrl = function (url) {
         const domain = utils.url.getHost(url);
         if (isDefaultWhitelistMode()) {
             removeFromWhitelist(domain);
@@ -362,7 +362,7 @@ export const allowlist = (() => {
         findWhitelistRule,
 
         whitelistUrl,
-        unWhitelistUrl,
+        unAllowlistUrl,
 
         isDefaultMode: isDefaultWhitelistMode,
         changeDefaultWhitelistMode,
