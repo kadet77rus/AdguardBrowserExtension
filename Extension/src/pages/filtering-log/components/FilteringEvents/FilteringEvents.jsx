@@ -194,7 +194,7 @@ const FilteringEvents = observer(() => {
                     <div className="filtering-log__empty-in">
                         <div className="filtering-log__empty-img" />
                         <div className="filtering-log__desc">
-                            {reactTranslator.translate('filtering_table_empty_reload_page', {
+                            {reactTranslator.translate('filtering_table_empty_reload_page_desc', {
                                 a: (chunks) => (
                                     <button
                                         className="filtering-log__refresh"
