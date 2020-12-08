@@ -543,7 +543,7 @@
         "message": "Фильтр"
     },
     "filtering_table_empty_reload_page": {
-        "message": "<a>Обновите страницу<\/a>, чтобы увидеть журнал фильтрации."
+        "message": "<a>Обновите страницу</a>, чтобы увидеть журнал фильтрации."
     },
     "filtering_modal_info_title": {
         "message": "Информация о запросе"

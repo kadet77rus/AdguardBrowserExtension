@@ -555,7 +555,7 @@
         "message": "Filter"
     },
     "filtering_table_empty_reload_page": {
-        "message": "<a>Reload page<\/a> to see the log."
+        "message": "<a>Reload page</a> to see the log."
     },
     "filtering_modal_info_title": {
         "message": "Request details"
