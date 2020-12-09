@@ -28,7 +28,7 @@ import { userrules } from '../../src/background/filter/userrules';
 import { webrequest } from '../../src/background/webrequest';
 import { requestSanitizer } from '../../src/background/filter/request-sanitizer';
 import { localeDetect } from '../../src/background/filter/services/locale-detect';
-import { contentMessageHandler } from '../../src/background/content-message-handler';
+import { messageHandler } from '../../src/background/message-handler';
 import { backgroundPage } from '../../src/background/extension-api/background-page';
 
 /**
@@ -97,13 +97,13 @@ export const adguardApi = (function () {
 
         let domains;
         if (configuration.blacklist) {
-            allowlist.changeDefaultWhitelistMode(false);
+            allowlist.changeDefaultAllowlistMode(false);
             domains = configuration.blacklist;
         } else {
-            allowlist.changeDefaultWhitelistMode(true);
+            allowlist.changeDefaultAllowlistMode(true);
             domains = configuration.whitelist;
         }
-        allowlist.updateWhitelistDomains(domains || []);
+        allowlist.updateAllowlistDomains(domains || []);
     }
 
     /**
@@ -269,7 +269,7 @@ export const adguardApi = (function () {
     webrequest.init();
     requestSanitizer.init();
     localeDetect.init();
-    contentMessageHandler.init();
+    messageHandler.init();
 
     const handleMessage = async (message) => {
         if (message.type === 'openAssistantInTab') {

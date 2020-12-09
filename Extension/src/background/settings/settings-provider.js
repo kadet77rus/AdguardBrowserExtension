@@ -72,8 +72,8 @@ export const settingsProvider = (function () {
         const customFiltersData = collectCustomFiltersData();
 
         // Collect whitelist/blacklist domains and whitelist mode
-        const whitelistDomains = allowlist.getWhitelistedDomains() || [];
-        const blockListDomains = allowlist.getBlockListedDomains() || [];
+        const whitelistDomains = allowlist.getAllowlistedDomains() || [];
+        const blockListDomains = allowlist.getBlocklistedDomains() || [];
         const defaultWhitelistMode = !!allowlist.isDefaultMode();
 
         // Collect user rules

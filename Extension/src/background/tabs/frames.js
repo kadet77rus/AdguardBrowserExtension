@@ -197,7 +197,7 @@ export const frames = (function () {
             let frameWhitelistRule = null;
             if (!applicationFilteringDisabled) {
                 const { url } = frame;
-                frameWhitelistRule = allowlist.findWhitelistRule(url);
+                frameWhitelistRule = allowlist.findAllowlistRule(url);
                 if (!frameWhitelistRule) {
                     frameWhitelistRule = filteringApi.findWhitelistRule(url, url, RequestTypes.DOCUMENT);
                 }

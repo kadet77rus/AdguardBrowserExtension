@@ -6,6 +6,7 @@ import { popupStore } from '../../stores/PopupStore';
 import { messenger } from '../../../services/messenger';
 
 import './promo-notification.pcss';
+import { MESSAGE_TYPES } from '../../../../common/constants';
 
 export const PromoNotification = observer(() => {
     const store = useContext(popupStore);
@@ -15,7 +16,7 @@ export const PromoNotification = observer(() => {
     // schedule notification removal
     useEffect(() => {
         if (store.promoNotification) {
-            messenger.sendMessage('setNotificationViewed', { withDelay: true });
+            messenger.sendMessage(MESSAGE_TYPES.SET_NOTIFICATION_VIEWED, { withDelay: true });
         }
     }, []);
 

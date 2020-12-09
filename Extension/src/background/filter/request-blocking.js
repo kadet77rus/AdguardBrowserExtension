@@ -297,7 +297,7 @@ export const webRequestService = (function () {
          * https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1032
          */
         if (tab.tabId === BACKGROUND_TAB_ID) {
-            whitelistRule = allowlist.findWhitelistRule(referrerUrl);
+            whitelistRule = allowlist.findAllowlistRule(referrerUrl);
         } else {
             whitelistRule = frames.getFrameWhitelistRule(tab);
         }

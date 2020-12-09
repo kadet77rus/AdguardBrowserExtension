@@ -32,6 +32,7 @@ import { userrules } from './filter/userrules';
 import { browserUtils } from './utils/browser-utils';
 import { log } from '../common/log';
 import { runtimeImpl } from '../common/common-script';
+import { MESSAGE_TYPES } from '../common/constants';
 
 export const uiService = (function () {
     const browserActionTitle = backgroundPage.i18n.getMessage('name');
@@ -763,7 +764,7 @@ export const uiService = (function () {
 
     var allowlistTab = function (tab) {
         const tabInfo = frames.getFrameInfo(tab);
-        allowlist.whitelistUrl(tabInfo.url);
+        allowlist.allowlistUrl(tabInfo.url);
         updateTabIconAndContextMenu(tab, true);
         tabsApi.reload(tab.tabId);
     };
@@ -813,7 +814,7 @@ export const uiService = (function () {
 
     const initAssistant = async (selectElement) => {
         const options = {
-            addRuleCallbackName: 'addUserRule',
+            addRuleCallbackName: MESSAGE_TYPES.ADD_USER_RULE,
             selectElement,
         };
 
