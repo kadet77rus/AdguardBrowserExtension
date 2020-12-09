@@ -80,6 +80,7 @@
     &__controls {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
 
         @media (max-width: 640px) {
             flex-direction: column;
@@ -106,13 +107,16 @@
 
         @media (min-width: 641px) {
             &:first-child {
-                margin-left: 32px;
                 margin-right: 24px;
             }
 
             &:nth-child(2) {
                 margin-left: 0;
                 margin-right: 38px;
+            }
+
+            &:nth-child(3) {
+                margin-top: 0;
             }
         }
 
