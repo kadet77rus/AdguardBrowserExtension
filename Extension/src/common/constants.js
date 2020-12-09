@@ -1,3 +1,6 @@
+/**
+ * Filter ids used in the code on the background page and filtering log page
+ */
 export const ANTIBANNER_FILTERS_ID = {
     USER_FILTER_ID: 0,
     RUSSIAN_FILTER_ID: 1,
@@ -13,6 +16,9 @@ export const ANTIBANNER_FILTERS_ID = {
     MOBILE_ADS_FILTER_ID: 11,
 };
 
+/**
+ * Stealth action bitwise masks used o the background page and on the filtering log page
+ */
 export const STEALTH_ACTIONS = {
     HIDE_REFERRER: 1 << 0,
     HIDE_SEARCH_QUERIES: 1 << 1,

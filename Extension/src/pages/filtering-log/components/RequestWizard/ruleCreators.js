@@ -4,6 +4,7 @@ import { strings } from '../../../../common/strings';
 import { UrlUtils } from './utils';
 
 /**
+ * TODO add tests for this method
  * Splits request url to patterns
  * @param requestUrl
  * @param domain
@@ -75,6 +76,7 @@ export const createDocumentLevelBlockRule = (rule) => {
 };
 
 /**
+ * TODO add tests for this method
  * Generates exception rule with required mask
  * @param ruleText
  * @param mask
@@ -92,6 +94,7 @@ const generateExceptionRule = (ruleText, mask) => {
 };
 
 /**
+ * TODO add tests for this function
  * Creates exception css rule
  * @param rule
  * @param event
@@ -122,6 +125,7 @@ export const createExceptionCssRule = (rule, event) => {
 };
 
 /**
+ * TODO add tests for this function
  * Creates exception cookie rule
  * @param rule
  * @param event
@@ -136,6 +140,7 @@ export const createExceptionCookieRule = (rule, event) => {
 };
 
 /**
+ * TODO add tests for this function
  * Creates exception script rule
  * @param rule
  * @param event
