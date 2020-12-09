@@ -10,7 +10,7 @@ import { rootStore } from '../../../stores/RootStore';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
 import { ANTIBANNER_FILTERS_ID, STEALTH_ACTIONS } from '../../../../../common/constants';
-import { Icon } from '../../../../../common/components/ui/Icon';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 import './request-info.pcss';
 

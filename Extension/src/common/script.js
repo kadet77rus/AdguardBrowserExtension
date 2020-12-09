@@ -18,94 +18,6 @@
 import { runtimeImpl } from './common-script';
 
 /**
- * UI checkboxes utils
- *
- * @type {{toggleCheckbox, updateCheckbox}}
- */
-export const CheckboxUtils = (function () {
-    const updateAreaChecked = (el, checked) => {
-        if (el) {
-            el.setAttribute('aria-checked', checked);
-        }
-    };
-
-    /**
-     * Toggles wrapped elements with checkbox UI
-     *
-     * @param {Array.<Object>} elements
-     */
-    const toggleCheckbox = function (elements) {
-        Array.prototype.forEach.call(elements, (checkbox) => {
-            if (checkbox.getAttribute('toggleCheckbox')) {
-                // already applied
-                return;
-            }
-
-            const el = document.createElement('div');
-            el.classList.add('toggler');
-            checkbox.parentNode.insertBefore(el, checkbox.nextSibling);
-
-            el.parentNode.addEventListener('click', () => {
-                checkbox.checked = !checkbox.checked;
-
-                const event = document.createEvent('HTMLEvents');
-                event.initEvent('change', true, false);
-                checkbox.dispatchEvent(event);
-            });
-
-            checkbox.addEventListener('change', () => {
-                onClicked(checkbox.checked);
-            });
-
-            function onClicked(checked) {
-                if (checked) {
-                    el.classList.add('active');
-                    el.closest('li').classList.add('active');
-                } else {
-                    el.classList.remove('active');
-                    el.closest('li').classList.remove('active');
-                }
-                updateAreaChecked(el.closest('.toggler-wr'), checked);
-            }
-
-            checkbox.style.display = 'none';
-            onClicked(checkbox.checked);
-
-            checkbox.setAttribute('toggleCheckbox', 'true');
-        });
-    };
-
-    /**
-     * Updates checkbox elements according to checked parameter
-     *
-     * @param {Array.<Object>} elements
-     * @param {boolean} checked
-     */
-    const updateCheckbox = function (elements, checked) {
-        Array.prototype.forEach.call(elements, (el) => {
-            if (!el || el.checked === checked) {
-                return;
-            }
-            if (checked) {
-                el.setAttribute('checked', 'checked');
-                el.closest('li').classList.add('active');
-                el.checked = checked;
-            } else {
-                el.removeAttribute('checked');
-                el.closest('li').classList.remove('active');
-                el.checked = false;
-            }
-            updateAreaChecked(el.closest('.toggler-wr'), !!checked);
-        });
-    };
-
-    return {
-        toggleCheckbox,
-        updateCheckbox,
-    };
-})();
-
-/**
  * Used to receive notifications from background page
  * @param events Events for listening
  * @param callback Event listener callback
@@ -137,17 +49,4 @@ export async function createEventListener(events, callback, onUnloadCallback) {
 
     window.addEventListener('beforeunload', onUnload);
     window.addEventListener('unload', onUnload);
-}
-
-/**
- * Creates HTMLElement from string
- *
- * @param {String} html representing a single element
- * @return {Element}
- */
-export function htmlToElement(html) {
-    const template = document.createElement('template');
-    html = html.trim(); // Never return a text node of whitespace as the result
-    template.innerHTML = html;
-    return template.content.firstChild;
 }

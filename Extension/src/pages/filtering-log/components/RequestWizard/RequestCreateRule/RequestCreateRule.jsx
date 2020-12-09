@@ -8,7 +8,7 @@ import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
 
 import './request-create-rule.pcss';
-import { Icon } from '../../../../../common/components/ui/Icon';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 const getTitleI18nKey = cn;
 
