@@ -17,7 +17,7 @@
 
 import { log } from '../../common/log';
 import { cookie } from './cookie';
-import { strings } from './strings';
+import { strings } from '../../common/strings';
 import { dates } from './dates';
 import { collections } from './collections';
 import { concurrent } from './concurrent';

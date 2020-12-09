@@ -10,7 +10,6 @@ export const strings = (() => {
     }
 
     const StringUtils = {
-
         isEmpty(str) {
             return !str || str.trim().length === 0;
         },

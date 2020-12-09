@@ -1,38 +1,8 @@
 import { SimpleRegex, NetworkRule, CosmeticRuleMarker } from '@adguard/tsurlfilter';
 
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
+import { strings } from '../../../../common/strings';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
-
-/**
- * String utils
- * @type {{substringAfter, containsIgnoreCase, substringBefore, startWith}}
- */
-export const StringUtils = {
-    startWith(str, prefix) {
-        return !!(str && str.indexOf(prefix) === 0);
-    },
-
-    containsIgnoreCase(str, searchString) {
-        return !!(str && searchString && str.toUpperCase()
-            .indexOf(searchString.toUpperCase()) >= 0);
-    },
-
-    substringAfter(str, separator) {
-        if (!str) {
-            return str;
-        }
-        const index = str.indexOf(separator);
-        return index < 0 ? '' : str.substring(index + separator.length);
-    },
-
-    substringBefore(str, separator) {
-        if (!str || !separator) {
-            return str;
-        }
-        const index = str.indexOf(separator);
-        return index < 0 ? str : str.substring(0, index);
-    },
-};
 
 /**
  * Url utils
@@ -57,17 +27,20 @@ export const UrlUtils = {
      * Removes protocol from URL
      */
     getUrlWithoutScheme(url) {
-        let index = url.indexOf('//');
+        let resultUrl = url;
+
+        let index = resultUrl.indexOf('//');
         if (index >= 0) {
-            url = url.substring(index + 2);
+            resultUrl = resultUrl.substring(index + 2);
         } else {
             // It's non hierarchical structured URL (e.g. stun: or turn:)
-            index = url.indexOf(':');
+            index = resultUrl.indexOf(':');
             if (index >= 0) {
-                url = url.substring(index + 1);
+                resultUrl = resultUrl.substring(index + 1);
             }
         }
-        return StringUtils.startWith(url, 'www.') ? url.substring(4) : url;
+
+        return strings.startWith(resultUrl, 'www.') ? resultUrl.substring(4) : resultUrl;
     },
 
     /**
@@ -99,9 +72,9 @@ export const splitToPatterns = (requestUrl, domain, whitelist) => {
 
     const patterns = [];
 
-    const relative = StringUtils.substringAfter(requestUrl, `${domain}/`);
+    const relative = strings.substringAfter(requestUrl, `${domain}/`);
 
-    const path = StringUtils.substringBefore(relative, '?');
+    const path = strings.substringBefore(relative, '?');
     if (path) {
         const parts = path.split('/');
 
