@@ -531,7 +531,7 @@
         "message": "Enter the search string"
     },
     "filtering_log_preserve_log": {
-        "message": "Save logs after refreshing"
+        "message": "Preserve log"
     },
     "filtering_refresh_tab": {
         "message": "Refresh page"
