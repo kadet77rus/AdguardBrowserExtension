@@ -6,7 +6,7 @@ import { SimpleRegex } from '@adguard/tsurlfilter';
 import { rootStore } from '../../stores/RootStore';
 import { Editor } from '../Editor';
 import { uploadFile } from '../../../helpers';
-import { log } from '../../../../background/utils/log';
+import { log } from '../../../../common/log';
 import { STATES as SAVING_STATES } from '../Editor/savingFSM';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 import { SettingsSection } from '../Settings/SettingsSection';

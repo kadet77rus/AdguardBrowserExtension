@@ -17,7 +17,7 @@ import { Footer } from '../Footer';
 import { rootStore } from '../../stores/RootStore';
 import { Notifications } from '../Notifications';
 import { messenger } from '../../../services/messenger';
-import { log } from '../../../../background/utils/log';
+import { log } from '../../../../common/log';
 
 import '../../styles/styles.pcss';
 

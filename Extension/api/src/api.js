@@ -20,7 +20,7 @@ import { tabsApi } from '../../src/background/tabs/tabs-api';
 import { webRequestService } from '../../src/background/filter/request-blocking';
 import { allowlist } from '../../src/background/filter/allowlist';
 import { subscriptions } from '../../src/background/filter/filters/subscription';
-import { log } from '../../src/background/utils/log';
+import { log } from '../../src/common/log';
 import { application } from '../../src/background/application';
 import { rulesStorage, localStorage } from '../../src/background/storage';
 import { listeners } from '../../src/background/notifier';

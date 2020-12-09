@@ -15,7 +15,7 @@
  * along with Adguard Browser Extension.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { log } from './log';
+import { log } from '../../common/log';
 import { cookie } from './cookie';
 import { strings } from './strings';
 import { dates } from './dates';

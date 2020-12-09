@@ -20,7 +20,7 @@ import { utils } from '../utils/common';
 import { settings } from '../settings/user-settings';
 import { localStorage } from '../storage';
 import { listeners } from '../notifier';
-import { log } from '../utils/log';
+import { log } from '../../common/log';
 import { lazyGet, lazyGetClear } from '../utils/lazy';
 
 export const allowlist = (() => {

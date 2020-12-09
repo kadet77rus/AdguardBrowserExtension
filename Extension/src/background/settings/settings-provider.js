@@ -16,7 +16,7 @@
  */
 
 import { application } from '../application';
-import { log } from '../utils/log';
+import { log } from '../../common/log';
 import { subscriptions } from '../filter/filters/subscription';
 import { allowlist } from '../filter/allowlist';
 import { userrules } from '../filter/userrules';

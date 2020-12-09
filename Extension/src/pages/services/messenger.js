@@ -1,6 +1,5 @@
 import browser from 'webextension-polyfill';
-// TODO move log to the common directory
-import { log } from '../../background/utils/log';
+import { log } from '../../common/log';
 
 class Messenger {
     onMessage = browser.runtime.onMessage;

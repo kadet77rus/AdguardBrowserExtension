@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
-import { log } from '../../../../../background/utils/log';
+import { log } from '../../../../../common/log';
 import { ModalContentWrapper } from './ModalContentWrapper';
 import { rootStore } from '../../../stores/RootStore';
 

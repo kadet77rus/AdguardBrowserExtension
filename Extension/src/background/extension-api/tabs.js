@@ -21,7 +21,7 @@ import { browser } from './browser';
 import { utils, toTabFromChromeTab } from '../utils/common';
 import { prefs } from '../prefs';
 import { browserUtils } from '../utils/browser-utils';
-import { log } from '../utils/log';
+import { log } from '../../common/log';
 
 /**
  * Chromium tabs implementation

@@ -23,7 +23,7 @@ import { subscriptions } from './filters/subscription';
 import { utils } from '../utils/common';
 import { settings } from '../settings/user-settings';
 import { filtersState } from './filters/filters-state';
-import { log } from '../utils/log';
+import { log } from '../../common/log';
 import { rulesStorage } from '../storage';
 import { filtersUpdate } from './filters/filters-update';
 import { engine } from './engine';

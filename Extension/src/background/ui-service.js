@@ -30,7 +30,7 @@ import { notifications } from './utils/notifications';
 import { allowlist } from './filter/allowlist';
 import { userrules } from './filter/userrules';
 import { browserUtils } from './utils/browser-utils';
-import { log } from './utils/log';
+import { log } from '../common/log';
 import { runtimeImpl } from '../common/common-script';
 
 export const uiService = (function () {

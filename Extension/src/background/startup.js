@@ -15,7 +15,7 @@
  * along with Adguard Browser Extension.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { log } from './utils/log';
+import { log } from '../common/log';
 import { backgroundPage } from './extension-api/background-page';
 import { rulesStorage, localStorage } from './storage';
 import { allowlist } from './filter/allowlist';

@@ -20,7 +20,7 @@
 import { utils } from '../utils/common';
 import { prefs } from '../prefs';
 import { listeners } from '../notifier';
-import { log } from '../utils/log';
+import { log } from '../../common/log';
 import { localStorage } from '../storage';
 import { browserUtils } from '../utils/browser-utils';
 import { lazyGet } from '../utils/lazy';

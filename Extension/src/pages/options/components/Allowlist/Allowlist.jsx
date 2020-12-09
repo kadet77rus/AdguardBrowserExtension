@@ -8,7 +8,7 @@ import { Setting, SETTINGS_TYPES } from '../Settings/Setting';
 import { Editor } from '../Editor';
 import { rootStore } from '../../stores/RootStore';
 import { uploadFile } from '../../../helpers';
-import { log } from '../../../../background/utils/log';
+import { log } from '../../../../common/log';
 import { STATES as SAVING_STATES } from '../Editor/savingFSM';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 

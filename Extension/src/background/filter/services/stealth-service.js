@@ -19,7 +19,7 @@ import * as TSUrlFilter from '@adguard/tsurlfilter';
 import { utils } from '../../utils/common';
 import { RequestTypes } from '../../utils/request-types';
 import { settings } from '../../settings/user-settings';
-import { log } from '../../utils/log';
+import { log } from '../../../common/log';
 import { requestContextStorage } from '../request-context-storage';
 import { filteringApi } from '../filtering-api';
 import { filteringLog } from '../filtering-log';
