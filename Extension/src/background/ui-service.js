@@ -86,7 +86,7 @@ export const uiService = (function () {
         'context_safebrowsing': function () {
             openSettingsTab('safebrowsing');
         },
-        'context_whitelist': function () {
+        'context_allowlist': function () {
             openSettingsTab('whitelist');
         },
         'context_userfilter': function () {
@@ -323,7 +323,7 @@ export const uiService = (function () {
                 checkable: true,
             });
             if (tabInfo.documentAllowlisted && !tabInfo.userAllowlisted) {
-                addMenu('popup_in_white_list_android');
+                addMenu('popup_in_allowlist_android');
             } else if (tabInfo.canAddRemoveRule) {
                 if (tabInfo.documentAllowlisted) {
                     addMenu('popup_site_filtering_state', {

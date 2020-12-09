@@ -89,7 +89,7 @@ const MiscellaneousFilters = observer(() => {
                             checked={searchWhitelisted}
                         />
                         <div className="custom-checkbox" />
-                        {reactTranslator.translate('filtering_log_filter_whitelisted')}
+                        {reactTranslator.translate('filtering_log_filter_allowlisted')}
                     </label>
 
                     <label className="checkbox-label" htmlFor="blocked">

@@ -137,8 +137,8 @@
     "filtering_log_privacy_applied_rules": {
         "message": "Stealth Mode applied"
     },
-    "filtering_log_in_whitelist": {
-        "message": "The site is whitelisted"
+    "filtering_log_in_allowlist": {
+        "message": "The site is allowlisted"
     },
     "filtering_log_hide_referrer": {
         "message": "Referrer hidden from third-parties"
@@ -413,8 +413,8 @@
     "popup_security_report_android": {
         "message": "Security report"
     },
-    "popup_in_white_list_android": {
-        "message": "In the Whitelist"
+    "popup_in_allowlist_android": {
+        "message": "In the Allowlist"
     },
     "popup_site_protection_disabled_android": {
         "message": "Protection is paused"
@@ -479,8 +479,8 @@
     "context_safebrowsing": {
         "message": "Browsing security"
     },
-    "context_whitelist": {
-        "message": "Whitelist"
+    "context_allowlist": {
+        "message": "Allowlist"
     },
     "context_userfilter": {
         "message": "User rules"
@@ -626,8 +626,8 @@
     "filtering_log_filter_regular": {
         "message": "Regular"
     },
-    "filtering_log_filter_whitelisted": {
-        "message": "Whitelisted"
+    "filtering_log_filter_allowlisted": {
+        "message": "Allowlisted"
     },
     "filtering_log_filter_blocked": {
         "message": "Blocked"
@@ -689,14 +689,14 @@
     "options_userfilter_import": {
         "message": "Import"
     },
-    "options_whitelist_description": {
-        "message": "AdGuard does not filter websites from the Whitelist."
+    "options_allowlist_description": {
+        "message": "AdGuard does not filter websites from the Allowlist."
     },
-    "options_whitelist_inverse": {
-        "message": "Invert the Whitelist"
+    "options_allowlist_inverse": {
+        "message": "Invert the Allowlist"
     },
-    "options_whitelist_inverse_desc": {
-        "message": "Unblock ads everywhere <i>except<\/i> for the websites from the Whitelist"
+    "options_allowlist_inverse_desc": {
+        "message": "Unblock ads everywhere <i>except<\/i> for the websites from the Allowlist"
     },
     "options_userfilter_description": {
         "message": "You can add your own rules here. This option is recommended for advanced users familiar with HTML/CSS. Read the <a>filter rules tutorial</a> to learn how to write your own filter rules."

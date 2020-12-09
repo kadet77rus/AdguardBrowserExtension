@@ -13,7 +13,7 @@ import {
     createExceptionCssRule,
     createExceptionScriptRule,
     splitToPatterns,
-} from '../components/RequestWizard/utils';
+} from '../components/RequestWizard/ruleCreators';
 import { messenger } from '../../services/messenger';
 
 export const WIZARD_STATES = {

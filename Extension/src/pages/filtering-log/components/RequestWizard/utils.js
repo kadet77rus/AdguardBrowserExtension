@@ -1,6 +1,6 @@
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
 import { strings } from '../../../../common/strings';
-import { MESSAGES } from './constants';
+import { reactTranslator } from '../../../reactCommon/reactTranslator';
 
 /**
  * Url utils
@@ -60,11 +60,11 @@ export const UrlUtils = {
  */
 export const getFilterName = (filterId, filtersMetadata) => {
     if (filterId === ANTIBANNER_FILTERS_ID.USER_FILTER_ID) {
-        return MESSAGES.OPTIONS_USERFILTER;
+        return reactTranslator.translate('options_userfilter');
     }
 
     if (filterId === ANTIBANNER_FILTERS_ID.ALLOWLIST_FILTER_ID) {
-        return MESSAGES.OPTIONS_ALLOWLIST;
+        return reactTranslator.translate('options_allowlist');
     }
 
     const filterMetadata = filtersMetadata.filter((el) => el.filterId === filterId)[0];

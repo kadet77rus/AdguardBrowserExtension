@@ -8,7 +8,6 @@ import { getRequestType } from '../RequestWizard/utils';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
 import { Icon } from '../../../common/components/ui/Icon';
-import { MESSAGES } from '../RequestWizard/constants';
 
 import './filtering-events.pcss';
 
@@ -76,7 +75,7 @@ const FilteringEvents = observer(() => {
                 let ruleText = '';
                 if (requestRule) {
                     if (requestRule.filterId === ANTIBANNER_FILTERS_ID.ALLOWLIST_FILTER_ID) {
-                        ruleText = MESSAGES.IN_ALLOWLIST;
+                        ruleText = reactTranslator.translate('filtering_log_in_allowlist');
                     } else {
                         ruleText = requestRule.ruleText;
                     }
