@@ -26,6 +26,13 @@ class Messenger {
         return response;
     }
 
+    /**
+     * Method subscribes to notifier module events
+     * @param events - list of events to which subscribe
+     * @param callback - callback called when event fires
+     * @param onUnloadCallback - callback used to remove listener on unload
+     * @returns {Promise<function(): Promise<void>>}
+     */
     createEventListener = async (events, callback, onUnloadCallback) => {
         const eventListener = (...args) => {
             callback(...args);

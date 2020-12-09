@@ -1,8 +1,6 @@
-import { SimpleRegex, NetworkRule, CosmeticRuleMarker } from '@adguard/tsurlfilter';
-
 import { ANTIBANNER_FILTERS_ID } from '../../../../common/constants';
 import { strings } from '../../../../common/strings';
-import { reactTranslator } from '../../../reactCommon/reactTranslator';
+import { MESSAGES } from './constants';
 
 /**
  * Url utils
@@ -53,63 +51,6 @@ export const UrlUtils = {
     },
 };
 
-export const splitToPatterns = (requestUrl, domain, whitelist) => {
-    const PATTERNS_COUNT = 2;
-
-    const hierarchicUrl = UrlUtils.isHierarchicUrl(requestUrl);
-    const protocol = UrlUtils.getProtocol(requestUrl);
-
-    let prefix;
-    if (hierarchicUrl) {
-        prefix = SimpleRegex.MASK_START_URL; // Covers default protocols: http, ws
-    } else {
-        prefix = `${protocol}:`; // Covers non-default protocols: stun, turn
-    }
-
-    if (whitelist) {
-        prefix = NetworkRule.MASK_ALLOWLIST + prefix;
-    }
-
-    const patterns = [];
-
-    const relative = strings.substringAfter(requestUrl, `${domain}/`);
-
-    const path = strings.substringBefore(relative, '?');
-    if (path) {
-        const parts = path.split('/');
-
-        let pattern = `${domain}/`;
-        for (let i = 0; i < Math.min(parts.length - 1, PATTERNS_COUNT); i += 1) {
-            pattern += `${parts[i]}/`;
-            patterns.push(prefix + pattern + SimpleRegex.MASK_ANY_CHARACTER);
-        }
-        const file = parts[parts.length - 1];
-        if (file && patterns.length < PATTERNS_COUNT) {
-            pattern += file;
-            patterns.push(prefix + pattern);
-        }
-    }
-
-    // add domain pattern to start
-    patterns.unshift(prefix + domain + SimpleRegex.MASK_SEPARATOR);
-
-    // push full url pattern
-    const url = UrlUtils.getUrlWithoutScheme(requestUrl);
-    if (`${domain}/` !== url) { // Don't duplicate: ||example.com/ and ||example.com^
-        if (patterns.indexOf(prefix + url) < 0) {
-            patterns.push(prefix + url);
-        }
-    }
-
-    return patterns.reverse();
-};
-
-const MESSAGES = {
-    OPTIONS_USERFILTER: reactTranslator.translate('options_userfilter'),
-    OPTIONS_ALLOWLIST: reactTranslator.translate('options_allowlist'),
-    IN_ALLOWLIST: reactTranslator.translate('filtering_log_in_allowlist'),
-};
-
 /**
  * Filter's name for filterId
  *
@@ -129,71 +70,6 @@ export const getFilterName = (filterId, filtersMetadata) => {
     const filterMetadata = filtersMetadata.filter((el) => el.filterId === filterId)[0];
 
     return filterMetadata ? filterMetadata.name : null;
-};
-
-export const createDocumentLevelBlockRule = (rule) => {
-    const { ruleText } = rule;
-    if (ruleText.indexOf(NetworkRule.OPTIONS_DELIMITER) > -1) {
-        return `${ruleText},${NetworkRule.OPTIONS.BADFILTER}`;
-    }
-    return ruleText + NetworkRule.OPTIONS_DELIMITER + NetworkRule.OPTIONS.BADFILTER;
-};
-
-const generateExceptionRule = (ruleText, mask) => {
-    const insert = (str, index, value) => str.slice(0, index) + value + str.slice(index);
-
-    const maskIndex = ruleText.indexOf(mask);
-    const maskLength = mask.length;
-    const rulePart = ruleText.slice(maskIndex + maskLength);
-    // insert exception mark after first char
-    const exceptionMask = insert(mask, 1, '@');
-    return exceptionMask + rulePart;
-};
-
-export const createExceptionCssRule = (rule, event) => {
-    const { ruleText } = rule;
-    const domainPart = event.frameDomain;
-    if (ruleText.indexOf(CosmeticRuleMarker.Css) > -1) {
-        return domainPart + generateExceptionRule(ruleText, CosmeticRuleMarker.Css);
-    }
-    if (ruleText.indexOf(CosmeticRuleMarker.ElementHidingExtCSS) > -1) {
-        return domainPart + generateExceptionRule(
-            ruleText,
-            CosmeticRuleMarker.ElementHidingExtCSS,
-        );
-    }
-    if (ruleText.indexOf(CosmeticRuleMarker.CssExtCSS) > -1) {
-        return domainPart + generateExceptionRule(
-            ruleText, CosmeticRuleMarker.CssExtCSS,
-        );
-    }
-    if (ruleText.indexOf(CosmeticRuleMarker.ElementHiding) > -1) {
-        return domainPart + generateExceptionRule(ruleText, CosmeticRuleMarker.ElementHiding);
-    }
-
-    return '';
-};
-
-export const createExceptionCookieRule = (rule, event) => {
-    let domain = event.frameDomain;
-    if (domain[0] === '.') {
-        domain = domain.substring(1);
-    }
-    return NetworkRule.MASK_ALLOWLIST + SimpleRegex.MASK_START_URL + domain;
-};
-
-export const createExceptionScriptRule = (rule, event) => {
-    const { ruleText } = rule;
-    const domainPart = event.frameDomain;
-    if (ruleText.indexOf(CosmeticRuleMarker.Js) > -1) {
-        return domainPart + generateExceptionRule(ruleText, CosmeticRuleMarker.Js);
-    }
-    const MASK_SCRIPT_RULE_UBO = '##';
-    if (ruleText.indexOf(MASK_SCRIPT_RULE_UBO) > -1) {
-        return domainPart + generateExceptionRule(ruleText, MASK_SCRIPT_RULE_UBO);
-    }
-
-    return '';
 };
 
 /**
