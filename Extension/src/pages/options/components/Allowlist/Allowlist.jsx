@@ -26,7 +26,7 @@ const Allowlist = observer(() => {
 
     const { settings, savingAllowlistState } = settingsStore;
 
-    const { DEFAULT_WHITE_LIST_MODE } = settings.names;
+    const { DEFAULT_ALLOWLIST_MODE } = settings.names;
 
     const settingChangeHandler = async ({ id, data }) => {
         await settingsStore.updateSetting(id, data);
@@ -106,9 +106,9 @@ const Allowlist = observer(() => {
                     description={reactTranslator.translate('options_allowlist_invert_desc')}
                     inlineControl={(
                         <Setting
-                            id={DEFAULT_WHITE_LIST_MODE}
+                            id={DEFAULT_ALLOWLIST_MODE}
                             type={SETTINGS_TYPES.CHECKBOX}
-                            value={settings.values[DEFAULT_WHITE_LIST_MODE]}
+                            value={settings.values[DEFAULT_ALLOWLIST_MODE]}
                             handler={settingChangeHandler}
                             inverted
                         />
