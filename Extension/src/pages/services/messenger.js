@@ -226,7 +226,7 @@ class Messenger {
     }
 
     async getTabFrameInfoById(tabId) {
-        await this.sendMessage(MESSAGE_TYPES.GET_TAB_FRAME_INFO_BY_ID, { tabId });
+        return this.sendMessage(MESSAGE_TYPES.GET_TAB_FRAME_INFO_BY_ID, { tabId });
     }
 }
 
