@@ -357,8 +357,8 @@ const init = () => {
                 await tabsApi.reload(data.tabId);
                 break;
             case MESSAGE_TYPES.GET_TAB_FRAME_INFO_BY_ID: {
-                if (message.tabId) {
-                    const frameInfo = frames.getFrameInfo({ tabId: message.tabId });
+                if (data.tabId) {
+                    const frameInfo = frames.getFrameInfo({ tabId: data.tabId });
                     return { frameInfo };
                 }
 
