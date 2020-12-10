@@ -4,14 +4,13 @@ import { strings } from '../../../../common/strings';
 import { UrlUtils } from './utils';
 
 /**
- * TODO add tests for this method
- * Splits request url to patterns
- * @param requestUrl
- * @param domain
- * @param allowlist
- * @returns {*[]}
+ * Splits request url by backslash to block or allow patterns
+ * @param {string} requestUrl - request event url
+ * @param {string} domain - request event domain
+ * @param {boolean} isAllowlist - flag determining if patterns would be blocking or allowing
+ * @returns {string[]}
  */
-export const splitToPatterns = (requestUrl, domain, allowlist) => {
+export const splitToPatterns = (requestUrl, domain, isAllowlist) => {
     const PATTERNS_COUNT = 2;
 
     const hierarchicUrl = UrlUtils.isHierarchicUrl(requestUrl);
@@ -24,7 +23,7 @@ export const splitToPatterns = (requestUrl, domain, allowlist) => {
         prefix = `${protocol}:`; // Covers non-default protocols: stun, turn
     }
 
-    if (allowlist) {
+    if (isAllowlist) {
         prefix = NetworkRule.MASK_ALLOWLIST + prefix;
     }
 
@@ -63,7 +62,9 @@ export const splitToPatterns = (requestUrl, domain, allowlist) => {
 };
 
 /**
- * Creates document level block rules
+ * Creates rule blocking document level rules
+ * e.g. for rule "@@||example.org^$urlblock" ->
+ *      blocking rule would be " @@||example.org^$urlblock,badfilter"
  * @param rule
  * @returns {string}
  */
@@ -76,7 +77,6 @@ export const createDocumentLevelBlockRule = (rule) => {
 };
 
 /**
- * TODO add tests for this method
  * Generates exception rule with required mask
  * @param ruleText
  * @param mask
@@ -94,11 +94,10 @@ const generateExceptionRule = (ruleText, mask) => {
 };
 
 /**
- * TODO add tests for this function
- * Creates exception css rule
+ * Creates exception rules for css rules
  * @param rule
  * @param event
- * @returns {string|*}
+ * @returns {string}
  */
 export const createExceptionCssRule = (rule, event) => {
     const { ruleText } = rule;
@@ -125,8 +124,7 @@ export const createExceptionCssRule = (rule, event) => {
 };
 
 /**
- * TODO add tests for this function
- * Creates exception cookie rule
+ * Creates exception rules for cookie rules
  * @param rule
  * @param event
  * @returns {string}
@@ -140,18 +138,19 @@ export const createExceptionCookieRule = (rule, event) => {
 };
 
 /**
- * TODO add tests for this function
- * Creates exception script rule
+ * Creates exception rule for blocking script rule
  * @param rule
  * @param event
- * @returns {string|*}
+ * @returns {string}
  */
 export const createExceptionScriptRule = (rule, event) => {
     const { ruleText } = rule;
     const domainPart = event.frameDomain;
+
     if (ruleText.indexOf(CosmeticRuleMarker.Js) > -1) {
         return domainPart + generateExceptionRule(ruleText, CosmeticRuleMarker.Js);
     }
+
     const MASK_SCRIPT_RULE_UBO = '##';
     if (ruleText.indexOf(MASK_SCRIPT_RULE_UBO) > -1) {
         return domainPart + generateExceptionRule(ruleText, MASK_SCRIPT_RULE_UBO);
