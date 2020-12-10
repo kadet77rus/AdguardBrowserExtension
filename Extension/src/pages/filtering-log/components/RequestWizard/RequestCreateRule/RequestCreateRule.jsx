@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
-import cn from 'classnames';
 
 import { rootStore } from '../../../stores/RootStore';
 import { RULE_OPTIONS } from '../constants';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
-
-import './request-create-rule.pcss';
 import { Icon } from '../../../../common/components/ui/Icon';
 
-const getTitleI18nKey = cn;
+import './request-create-rule.pcss';
 
 const RequestCreateRule = observer(() => {
     const { wizardStore, logStore } = useContext(rootStore);
@@ -129,11 +126,6 @@ const RequestCreateRule = observer(() => {
     const showPatterns = !isElementOrScript && !cookieName;
     const showOptions = !isElementOrScript && !requestRule?.documentLevelRule;
 
-    const titleI18nKey = getTitleI18nKey({
-        filtering_modal_block: wizardStore.requestModalStateEnum.isBlock,
-        filtering_modal_unblock: wizardStore.requestModalStateEnum.isUnblock,
-    });
-
     return (
         <>
             <div className="request-modal__title">
@@ -144,7 +136,7 @@ const RequestCreateRule = observer(() => {
                 >
                     <Icon id="#arrow-left" />
                 </button>
-                <span className="request-modal__header">{reactTranslator.translate(titleI18nKey)}</span>
+                <span className="request-modal__header">{reactTranslator.translate('filtering_modal_add_title')}</span>
             </div>
             <div className="request-modal__content">
                 <div className="request-info request-modal__rule-text">
@@ -175,11 +167,11 @@ const RequestCreateRule = observer(() => {
             </div>
             <button
                 type="button"
-                className="request-modal__button request-modal__button--red"
+                className="request-modal__button"
                 onClick={handleAddRuleClick}
-                title={reactTranslator.translate(titleI18nKey)}
+                title={reactTranslator.translate('filtering_modal_add_rule')}
             >
-                {reactTranslator.translate(titleI18nKey)}
+                {reactTranslator.translate('filtering_modal_add_rule')}
             </button>
         </>
     );

@@ -155,12 +155,30 @@ const RequestInfo = observer(() => {
         wizardStore.removeFromAllowlistHandler();
     };
 
+    const renderButton = ({ buttonTitleKey, onClick, className }) => {
+        const buttonClass = cn('request-modal__button', className);
+
+        const title = reactTranslator.translate(buttonTitleKey);
+
+        return (
+            <button
+                className={buttonClass}
+                type="button"
+                onClick={onClick}
+                title={title}
+            >
+                {title}
+            </button>
+        );
+    };
+
     const renderBlockRequest = (event) => {
         const { requestRule } = event;
 
         const BUTTON_MAP = {
             BLOCK: {
                 buttonTitleKey: 'filtering_modal_block',
+                className: 'request-modal__button--red',
                 onClick: blockHandler,
             },
             UNBLOCK: {
@@ -184,7 +202,12 @@ const RequestInfo = observer(() => {
         } else if (requestRule.filterId === ANTIBANNER_FILTERS_ID.USER_FILTER_ID) {
             props = BUTTON_MAP.USER_FILTER;
             if (requestRule.whitelistRule) {
-                props = BUTTON_MAP.BLOCK;
+                return (
+                    <>
+                        {renderButton(BUTTON_MAP.BLOCK)}
+                        {renderButton(props)}
+                    </>
+                );
             }
         } else if (requestRule.filterId === ANTIBANNER_FILTERS_ID.ALLOWLIST_FILTER_ID) {
             props = BUTTON_MAP.ALLOWLIST;
@@ -194,22 +217,7 @@ const RequestInfo = observer(() => {
             props = BUTTON_MAP.BLOCK;
         }
 
-        const { buttonTitleKey, onClick } = props;
-
-        const buttonClass = cn('request-modal__button', {
-            'request-modal__button--red': buttonTitleKey === BUTTON_MAP.BLOCK.buttonTitleKey,
-        });
-
-        return (
-            <button
-                className={buttonClass}
-                type="button"
-                onClick={onClick}
-                title={reactTranslator.translate(buttonTitleKey)}
-            >
-                {reactTranslator.translate(buttonTitleKey)}
-            </button>
-        );
+        return renderButton(props);
     };
 
     return (
