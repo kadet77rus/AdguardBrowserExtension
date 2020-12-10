@@ -8,28 +8,26 @@ import { reactTranslator } from '../../../reactCommon/reactTranslator';
  */
 export const UrlUtils = {
     getProtocol(url) {
-        let index = url.indexOf('//');
-        if (index >= 0) {
-            return url.substring(0, index);
+        try {
+            const urlObject = new URL(url);
+            return urlObject.protocol;
+        } catch (e) {
+            return '';
         }
-        // It's non hierarchical structured URL (e.g. stun: or turn:)
-        index = url.indexOf(':');
-        if (index >= 0) {
-            return url.substring(0, index + 1);
-        }
-
-        return '';
     },
 
     /**
-     * Removes protocol from URL
+     * Removes protocol from URL and "www." if url starts with it
      */
     getUrlWithoutScheme(url) {
-        let resultUrl = url;
+        let resultUrl;
 
-        const protocol = this.getProtocol(resultUrl);
-
-        resultUrl = resultUrl.replace(protocol, '');
+        const protocol = this.getProtocol(url);
+        if (this.isHierarchicUrl(url)) {
+            resultUrl = url.replace(`${protocol}//`, '');
+        } else {
+            resultUrl = url.replace(protocol, '');
+        }
 
         return strings.startWith(resultUrl, 'www.') ? resultUrl.substring(4) : resultUrl;
     },

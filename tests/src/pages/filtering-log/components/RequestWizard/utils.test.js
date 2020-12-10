@@ -16,7 +16,8 @@ describe('utils', () => {
 
         describe('getUrlWithoutScheme', () => {
             it('returns url without scheme for standard protocols https, ws', () => {
-                expect(UrlUtils.getUrlWithoutScheme('https://example.org')).toBe('//example.org');
+                expect(UrlUtils.getUrlWithoutScheme('https://example.org')).toBe('example.org');
+                expect(UrlUtils.getUrlWithoutScheme('https://www.example.org')).toBe('example.org');
             });
             it('returns url without scheme for non-standard protocols stun', () => {
                 expect(UrlUtils.getUrlWithoutScheme('stun:example.org')).toBe('example.org');
