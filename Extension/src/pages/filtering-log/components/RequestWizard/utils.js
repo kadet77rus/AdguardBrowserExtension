@@ -15,7 +15,7 @@ export const UrlUtils = {
         // It's non hierarchical structured URL (e.g. stun: or turn:)
         index = url.indexOf(':');
         if (index >= 0) {
-            return url.substring(0, index);
+            return url.substring(0, index + 1);
         }
 
         return '';
@@ -27,16 +27,9 @@ export const UrlUtils = {
     getUrlWithoutScheme(url) {
         let resultUrl = url;
 
-        let index = resultUrl.indexOf('//');
-        if (index >= 0) {
-            resultUrl = resultUrl.substring(index + 2);
-        } else {
-            // It's non hierarchical structured URL (e.g. stun: or turn:)
-            index = resultUrl.indexOf(':');
-            if (index >= 0) {
-                resultUrl = resultUrl.substring(index + 1);
-            }
-        }
+        const protocol = this.getProtocol(resultUrl);
+
+        resultUrl = resultUrl.replace(protocol, '');
 
         return strings.startWith(resultUrl, 'www.') ? resultUrl.substring(4) : resultUrl;
     },

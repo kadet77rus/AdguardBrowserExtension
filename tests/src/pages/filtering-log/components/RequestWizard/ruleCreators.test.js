@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
 import {
-    createDocumentLevelBlockRule, createExceptionCookieRule, createExceptionCssRule, createExceptionScriptRule,
+    createDocumentLevelBlockRule,
+    createExceptionCookieRule,
+    createExceptionCssRule,
+    createExceptionScriptRule,
     splitToPatterns,
 } from '../../../../../../Extension/src/pages/filtering-log/components/RequestWizard/ruleCreators';
 

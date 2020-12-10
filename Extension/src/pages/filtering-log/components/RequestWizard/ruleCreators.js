@@ -14,13 +14,12 @@ export const splitToPatterns = (requestUrl, domain, isAllowlist) => {
     const PATTERNS_COUNT = 2;
 
     const hierarchicUrl = UrlUtils.isHierarchicUrl(requestUrl);
-    const protocol = UrlUtils.getProtocol(requestUrl);
 
     let prefix;
     if (hierarchicUrl) {
         prefix = SimpleRegex.MASK_START_URL; // Covers default protocols: http, ws
     } else {
-        prefix = `${protocol}:`; // Covers non-default protocols: stun, turn
+        prefix = UrlUtils.getProtocol(requestUrl); // Covers non-default protocols: stun, turn
     }
 
     if (isAllowlist) {
