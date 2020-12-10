@@ -5,9 +5,9 @@ import { rootStore } from '../../../stores/RootStore';
 import { RULE_OPTIONS } from '../constants';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 import './request-create-rule.pcss';
-import { Icon } from '../../../../common/components/ui/Icon';
 
 const RequestCreateRule = observer(() => {
     const { wizardStore, logStore } = useContext(rootStore);
