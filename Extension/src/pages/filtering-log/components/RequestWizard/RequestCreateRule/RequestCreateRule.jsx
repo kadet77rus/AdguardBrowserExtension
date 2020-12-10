@@ -175,11 +175,11 @@ const RequestCreateRule = observer(() => {
             </div>
             <button
                 type="button"
-                className="request-modal__button request-modal__button--red"
+                className="request-modal__button"
                 onClick={handleAddRuleClick}
-                title={reactTranslator.translate(titleI18nKey)}
+                title={reactTranslator.translate('filtering_modal_add_rule')}
             >
-                {reactTranslator.translate(titleI18nKey)}
+                {reactTranslator.translate('filtering_modal_add_rule')}
             </button>
         </>
     );
