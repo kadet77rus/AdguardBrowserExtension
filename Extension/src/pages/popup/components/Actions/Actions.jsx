@@ -26,11 +26,17 @@ export const Actions = observer(() => {
     };
 
     const handleAbuseSite = () => {
+        if (!store.applicationAvailable) {
+            return;
+        }
         messenger.openAbuseSite(store.url);
         window.close();
     };
 
     const handleCheckSiteSecurity = () => {
+        if (!store.applicationAvailable) {
+            return;
+        }
         messenger.checkSiteSecurity(store.url);
         window.close();
     };
