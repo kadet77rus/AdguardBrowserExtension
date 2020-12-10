@@ -21,8 +21,11 @@ label.checkbox-label {
 
         &:checked + .custom-checkbox {
             background-color: var(--mainGreen);
-            background-image: svg-load("checked.svg");
             border-color: var(--mainGreen);
+
+            & .icon {
+                display: block;
+            }
         }
     }
 
@@ -30,12 +33,16 @@ label.checkbox-label {
         width: 16px;
         height: 16px;
         background-color: transparent;
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: 13px 12px;
         border: 2px solid var(--inputsBorder);
         border-radius: 2px;
         margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & .icon {
+            display: none;
+        }
     }
 }
 
@@ -50,17 +57,25 @@ label.radio-button-label {
         display: none;
 
         &:checked + .radio-button {
-            background-image: svg-load("circle.svg");
-            background-position: center;
-            background-size: 12px 12px;
-            background-repeat: no-repeat;
             border: 2px solid var(--mainGreen);
+
+            &:after {
+                content: "";
+                position: absolute;
+                left: calc(50% - 6px);
+                top: calc(50% - 6px);
+                width: 12px;
+                height: 12px;
+                border-radius: 100%;
+                background-color: var(--mainGreen);
+            }
         }
     }
 
     & .radio-button {
-        width: 17px;
-        height: 17px;
+        width: 18px;
+        height: 18px;
+        position: relative;
         background-color: transparent;
         border: 2px solid var(--inputsBorder);
         border-radius: 17px;
@@ -90,9 +105,6 @@ button.green-button {
 }
 
 .icon {
-    width: 100%;
-    height: 100%;
-
     &--24 {
         --size: 24px;
         width: var(--size);

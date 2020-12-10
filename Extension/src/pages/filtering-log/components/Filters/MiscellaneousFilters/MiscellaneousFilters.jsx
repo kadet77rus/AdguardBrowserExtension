@@ -2,6 +2,8 @@ import React, { useContext, useState, useRef } from 'react';
 import { observer } from 'mobx-react';
 import cn from 'classnames';
 
+import { Icon } from '../../../../common/components/ui/Icon';
+
 import { rootStore } from '../../../stores/RootStore';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
 
@@ -75,7 +77,9 @@ const MiscellaneousFilters = observer(() => {
                             value={searchRegular}
                             checked={searchRegular}
                         />
-                        <div className="custom-checkbox" />
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
                         {reactTranslator.translate('filtering_log_filter_regular')}
                     </label>
 
@@ -88,7 +92,9 @@ const MiscellaneousFilters = observer(() => {
                             value={searchWhitelisted}
                             checked={searchWhitelisted}
                         />
-                        <div className="custom-checkbox" />
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
                         {reactTranslator.translate('filtering_log_filter_allowlisted')}
                     </label>
 
@@ -101,7 +107,9 @@ const MiscellaneousFilters = observer(() => {
                             value={searchBlocked}
                             checked={searchBlocked}
                         />
-                        <div className="custom-checkbox" />
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
                         {reactTranslator.translate('filtering_log_filter_blocked')}
                     </label>
 
@@ -114,7 +122,9 @@ const MiscellaneousFilters = observer(() => {
                             value={searchModified}
                             checked={searchModified}
                         />
-                        <div className="custom-checkbox" />
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
                         {reactTranslator.translate('filtering_log_filter_modified')}
                     </label>
 
@@ -127,7 +137,9 @@ const MiscellaneousFilters = observer(() => {
                             value={searchUserFilter}
                             checked={searchUserFilter}
                         />
-                        <div className="custom-checkbox" />
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
                         {reactTranslator.translate('filtering_log_filter_user_rule')}
                     </label>
                 </div>

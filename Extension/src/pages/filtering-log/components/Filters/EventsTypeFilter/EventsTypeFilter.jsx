@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import { rootStore } from '../../../stores/RootStore';
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 import './events-type-filter.pcss';
 
@@ -75,7 +76,8 @@ const EventsTypeFilter = observer(() => {
                         type="button"
                         onClick={openModal}
                     >
-                        Content type
+                        <Icon id="#code" classname="events-types__code" />
+                        {reactTranslator.translate('filtering_type_content_type')}
                     </button>
                     <Modal
                         isOpen={isOpened}

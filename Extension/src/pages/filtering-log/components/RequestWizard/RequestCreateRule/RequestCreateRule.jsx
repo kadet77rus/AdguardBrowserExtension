@@ -85,7 +85,9 @@ const RequestCreateRule = observer(() => {
                         onChange={handleOptionsChange(id)}
                         checked={wizardStore.ruleOptions[id].checked}
                     />
-                    <div className="custom-checkbox" />
+                    <div className="custom-checkbox">
+                        <Icon id="#checked" classname="icon--checked" />
+                    </div>
                     {label}
                 </label>
             );
@@ -142,7 +144,7 @@ const RequestCreateRule = observer(() => {
                     onClick={handleBackClick}
                     className="request-modal__navigation request-modal__navigation--back"
                 >
-                    <Icon id="#arrow-left" />
+                    <Icon classname="icon--24" id="#arrow-left" />
                 </button>
                 <span className="request-modal__header">{reactTranslator.translate(titleI18nKey)}</span>
             </div>

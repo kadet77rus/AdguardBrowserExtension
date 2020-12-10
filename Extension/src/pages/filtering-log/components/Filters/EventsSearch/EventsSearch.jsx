@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { rootStore } from '../../../stores/RootStore';
 
 import './events-search.pcss';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 const EventsSearch = observer(() => {
     const { logStore } = useContext(rootStore);
@@ -40,7 +41,9 @@ const EventsSearch = observer(() => {
                     type="button"
                     className="events-search__clear"
                     onClick={handleClear}
-                />
+                >
+                    <Icon id="#cross" classname="events-search__cross" />
+                </button>
             )}
         </form>
     );

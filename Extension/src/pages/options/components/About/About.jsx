@@ -11,6 +11,7 @@ import {
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
 
 import './about-page.pcss';
+import { Icon } from '../../../common/components/ui/Icon';
 
 const About = observer(() => {
     const { settingsStore } = useContext(rootStore);
@@ -32,7 +33,7 @@ const About = observer(() => {
                 </h2>
             </div>
             <div className="about">
-                <div className="logo about__logo" />
+                <Icon id="#logo" classname="icon--logo about__logo" />
                 <div className="about__version">
                     {reactTranslator.translate('options_about_version')}
                     {' '}

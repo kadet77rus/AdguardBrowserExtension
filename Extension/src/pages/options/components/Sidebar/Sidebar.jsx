@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { Nav } from '../Nav';
+import { Icon } from '../../../common/components/ui/Icon';
 
 import './sidebar.pcss';
 
@@ -26,7 +27,7 @@ const Sidebar = () => {
                     </div>
                 )}
             <div className={className}>
-                <div className="logo sidebar__logo" />
+                <Icon id="#logo" classname="icon--logo sidebar__logo" />
                 <Nav closeSidebar={closeSidebar} />
             </div>
         </>

@@ -38,14 +38,14 @@
     &__icon {
         margin-left: auto;
         display: flex;
+        align-items: center;
         position: relative;
-
         border: 0;
         background-color: transparent;
-        background-image: svg-load("code.svg"), svg-load("arrow-down-grey.svg");
-        background-position: 0 50%, 100% 50%;
+        background-image: svg-load("arrow-down-grey.svg");
+        background-position: 100% 50%;
         background-repeat: no-repeat, no-repeat;
-        background-size: 24px 24px, 11px 9px;
+        background-size: 11px 9px;
         padding: 0 20px 0 25px;
         font-size: 14px;
         color: var(--textColor);
@@ -54,6 +54,10 @@
         &:focus {
             outline: none;
         }
+    }
+
+    &__code {
+        margin-right: 5px;
     }
 }
 

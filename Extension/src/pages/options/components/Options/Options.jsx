@@ -18,6 +18,7 @@ import { rootStore } from '../../stores/RootStore';
 import { Notifications } from '../Notifications';
 import { messenger } from '../../../services/messenger';
 import { log } from '../../../../common/log';
+import { Icons } from '../../../common/components/ui/Icons';
 
 import '../../styles/styles.pcss';
 
@@ -82,6 +83,7 @@ const Options = observer(() => {
 
     return (
         <HashRouter hashType="noslash">
+            <Icons />
             <div className="page">
                 <Sidebar />
                 <div className="content">

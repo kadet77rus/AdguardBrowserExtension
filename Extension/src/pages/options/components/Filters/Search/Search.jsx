@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { reactTranslator } from '../../../../reactCommon/reactTranslator';
+import { Icon } from '../../../../common/components/ui/Icon';
 
 import './search.pcss';
 
@@ -23,9 +24,11 @@ const Search = ({
         {searchInput && (
             <button
                 type="button"
-                className="button search__cross"
+                className="button"
                 onClick={searchCloseHandler}
-            />
+            >
+                <Icon id="#cross" classname="search__cross" />
+            </button>
         )}
         <select
             name="select_time"

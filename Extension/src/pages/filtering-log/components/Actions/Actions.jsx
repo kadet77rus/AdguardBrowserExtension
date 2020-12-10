@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 import { rootStore } from '../../stores/RootStore';
 import { reactTranslator } from '../../../reactCommon/reactTranslator';
+import { Icon } from '../../../common/components/ui/Icon';
 
 import './actions.pcss';
 
@@ -48,6 +49,7 @@ const Actions = observer(() => {
                     type="button"
                     onClick={clearLogHandler}
                 >
+                    <Icon id="#cross" classname="actions__cross" />
                     {reactTranslator.translate('filtering_clear_tab_events')}
                 </button>
             </div>
@@ -59,7 +61,9 @@ const Actions = observer(() => {
                         id="preserveLog"
                         onChange={preserveLogHandler}
                     />
-                    <div className={preserveLogClassName} />
+                    <div className={preserveLogClassName}>
+                        <Icon id="#checked" classname="icon--checked" />
+                    </div>
                     {reactTranslator.translate('filtering_log_preserve_log')}
                 </label>
             </div>
